@@ -38,7 +38,7 @@ export const PROJECTS = [
     appPreview: "https://mystore-eight-delta.vercel.app/",
     description:
       "A simple e-commerce platform created for testing UX/UI designs, featuring basic product showcasing and user navigation. This project emphasizes user experience and interface design, ensuring a responsive layout for optimal use on both desktop and mobile devices.",
-    technologies: ["HTML", "CSS", "SCSS"],
+    technologies: ["HTML", "CSS", "SASS"],
   },
   {
     title: "Landing Page",
@@ -46,6 +46,6 @@ export const PROJECTS = [
     appPreview: "https://landing-page-virid-eta-39.vercel.app/",
     description:
       "A visually appealing landing page designed for testing UX/UI concepts, focusing on engaging user experiences and effective call-to-action elements. This project showcases a clean layout and responsive design, ensuring optimal functionality on both desktop and mobile devices.",
-    technologies: ["HTML", "CSS", "SCSS"],
+    technologies: ["HTML", "CSS", "SASS"],
   },
 ];

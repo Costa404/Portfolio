@@ -1,8 +1,10 @@
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandTypescript } from "react-icons/tb";
-import { SiFirebase } from "react-icons/si";
+import { SiFirebase, SiTailwindcss } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
 import { motion, Variants } from "framer-motion";
+import { BsBootstrapFill } from "react-icons/bs";
+import { FaSass } from "react-icons/fa";
 
 const iconVariants = (duration: number): Variants => ({
   initial: { y: -10 },
@@ -65,6 +67,30 @@ const Technologies = () => {
           className="rounded-2xl border-4 border-neutral-800 p-4"
         >
           <SiFirebase className="text-7xl text-orange-500" />
+        </motion.div>
+        <motion.div
+          variants={iconVariants(2)} // Outra duração para este ícone
+          initial="initial"
+          animate="animate"
+          className="rounded-2xl border-4 border-neutral-800 p-4"
+        >
+          <SiTailwindcss className="text-7xl text-sky-500" />
+        </motion.div>
+        <motion.div
+          variants={iconVariants(4)} // Outra duração para este ícone
+          initial="initial"
+          animate="animate"
+          className="rounded-2xl border-4 border-neutral-800 p-4"
+        >
+          <BsBootstrapFill className="text-7xl text-purple-500" />
+        </motion.div>
+        <motion.div
+          variants={iconVariants(2)} // Outra duração para este ícone
+          initial="initial"
+          animate="animate"
+          className="rounded-2xl border-4 border-neutral-800 p-4"
+        >
+          <FaSass className="text-7xl text-pink-500" />
         </motion.div>
       </motion.div>
     </div>
