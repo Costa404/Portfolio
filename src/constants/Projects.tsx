@@ -1,7 +1,7 @@
 import onlineshop from "../assets/Online-shopping-07.gif";
 import project3 from "../assets/projects/project-3.jpg";
 
-import minichat from "../assets/minichat.png";
+import minichat from "../assets/minichat.jpg";
 import landingpage from "../assets/landingpage.png";
 
 export const PROJECTS = [
