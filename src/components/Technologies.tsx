@@ -1,4 +1,3 @@
-import React from "react";
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandTypescript } from "react-icons/tb";
 import { SiFirebase } from "react-icons/si";

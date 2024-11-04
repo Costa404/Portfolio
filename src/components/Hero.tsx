@@ -1,4 +1,3 @@
-import React from "react";
 import { HERO_CONTENT } from "../constants";
 import me from "../assets/449848053_1150348466200881_2175802495937372994_n.jpg";
 import { motion } from "framer-motion";

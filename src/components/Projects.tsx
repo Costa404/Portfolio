@@ -44,7 +44,7 @@ const Projects = () => {
                 {" "}
                 <a
                   href={project.appPreview}
-                  className="mb-4 mr-2 rounded bg-neutral-800 px-2 py-1 text-sm font-medium text-neutral"
+                  className="mb-4 mr-2 rounded bg-neutral-800 px-2 py-1 text-sm font-medium text-neutral hover"
                 >
                   View Live App
                 </a>

@@ -12,24 +12,25 @@ export const PROJECTS = [
     description:
       "A real-time chat application with user profiles, and emoji support. Built with React, TypeScript, and Firebase, it features seamless authentication and real-time messaging.",
 
-    technologies: ["CSS", "React", "TypeScript", "Firebase"],
+    technologies: ["React", "TypeScript", "Firebase", "CSS"],
   },
 
+  {
+    title: "myPortfolio Website",
+    image: project3,
+    appPreview: "https://mystore-eight-delta.vercel.app/",
+    description:
+      "A personal portfolio website showcasing projects, skills, and contact information.",
+
+    technologies: ["React", "TypeScript", "Taillwind"],
+  },
   {
     title: "Cv Template Website",
     image: project3,
     appPreview: "https://cvtemplate-4b972.web.app/",
     description:
       "This CV template is a modern, responsive application created with React and TypeScript for enhanced type safety. Featuring a clean, professional layout styled with CSS, it allows users to effectively showcase their skills, experience, and education.",
-    technologies: ["CSS", "React", "TypeScript"],
-  },
-  {
-    title: "Portfolio Website",
-    image: project3,
-    description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-
-    technologies: ["HTML", "CSS", "React", "Bootstrap"],
+    technologies: ["React", "TypeScript", "CSS"],
   },
   {
     title: "Online Store",
