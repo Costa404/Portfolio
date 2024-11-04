@@ -1,0 +1,78 @@
+/* src/components/FuturisticText.css
+
+.futuristic-text {
+  font-size: 6rem;
+  color: #00ffea;
+  text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 40px #00e6e0,
+    0 0 60px #00cccc;
+  animation: flicker 1.5s infinite alternate, glitch 2s infinite;
+  position: relative;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.8;
+    filter: blur(0.5px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0.8px);
+  }
+  100% {
+    opacity: 0.9;
+    filter: blur(0.3px);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  60% {
+    transform: translate(-2px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.futuristic-text::before,
+.futuristic-text::after {
+  content: "NC";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #ff007a;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  animation: glitch 2s infinite;
+}
+
+.futuristic-text::before {
+  animation-delay: 0.1s;
+  color: #00ffea;
+  clip: rect(2px, 500px, 5px, 0);
+}
+
+.futuristic-text::after {
+  animation-delay: 0.3s;
+  color: #ff007a;
+  clip: rect(5px, 500px, 10px, 0);
+} */
+
+.responsive-image {
+  width: 100%;
+  height: auto; /* Mantém a proporção */
+  min-width: 150px; /* Define a largura mínima */
+  max-width: 150px; /* Define a largura mínima */
+  min-height: 150px; /* Define a altura mínima */
+}
