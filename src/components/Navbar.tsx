@@ -7,7 +7,7 @@ const Navbar = () => {
         <h1 className="futuristic-text mx-2 w-10 text-4xl">NC</h1>
       </div>
       <div className="m-8 flex items-center justify-center gap-4 text-4xl">
-        <a href="www.linkedin.com/in/nunocosta404">
+        <a href="https://www.linkedin.com/in/nunocosta404/">
           {" "}
           <FaLinkedin />
         </a>
