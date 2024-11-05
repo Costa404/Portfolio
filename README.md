@@ -1,7 +1,3 @@
-Ótimo! Podemos adicionar o Framer Motion ao README para refletir seu uso na animação dos elementos do portfólio:
-Portfolio
-
-A personal portfolio showcasing my projects and skills as a frontend developer, with a focus on clean design, smooth animations, and responsive user experience.
 📝 Project Overview
 
 This portfolio is a central space to showcase my skills and projects, allowing potential employers and collaborators to learn more about my work. Built with modern technologies and smooth animations, the portfolio is designed to be visually engaging and user-friendly.
