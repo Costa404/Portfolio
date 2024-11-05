@@ -1,10 +1,19 @@
 import onlineshop from "../assets/Online-shopping-07.gif";
 import project3 from "../assets/projects/project-3.jpg";
-
+import instagramLogo from "../assets/Instagram_logo_2022.svg.webp";
 import minichat from "../assets/minichat.jpg";
 import landingpage from "../assets/landingpage.png";
-
+import gameImg from "../assets/game.png";
 export const PROJECTS = [
+  {
+    title: "Instagram Clone Unfinished",
+    image: instagramLogo,
+    appPreview: "#",
+    description:
+      "An Instagram clone that replicates core features, including authentication, user profiles, posts and more. Built with React, TypeScript, and Firebase, it also integrates real-time chat for seamless communication between users.",
+
+    technologies: ["React", "TypeScript", "Firebase", "Bootstrap"],
+  },
   {
     title: "MiniChat Website",
     image: minichat,
@@ -31,6 +40,14 @@ export const PROJECTS = [
     description:
       "This CV template is a modern, responsive application created with React and TypeScript for enhanced type safety. Featuring a clean, professional layout styled with CSS, it allows users to effectively showcase their skills, experience, and education.",
     technologies: ["React", "TypeScript", "CSS"],
+  },
+  {
+    title: "Tic Tac Toe Game",
+    image: gameImg,
+    appPreview: "https://tic-toc-toe-game-nine.vercel.app/",
+    description:
+      "A classic Tic Tac Toe game built with JavaScript, HTML, and CSS. Though unfinished, it is fully functional, allowing players to take turns, place marks, and aim to align three in a row to win",
+    technologies: ["JavaScript", "HTML", "CSS"],
   },
   {
     title: "Online Store",
