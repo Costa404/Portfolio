@@ -1,9 +1,7 @@
 📝 Project Overview
 
 This portfolio is a central space to showcase my skills and projects, allowing potential employers and collaborators to learn more about my work. Built with modern technologies and smooth animations, the portfolio is designed to be visually engaging and user-friendly.
-🚀 Live Demo
 
-Check out the live version of this portfolio here: Portfolio Live Demo
 💻 Features
 
     Projects Overview: Highlights featured projects with links to live demos and GitHub repositories.
