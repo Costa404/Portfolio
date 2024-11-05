@@ -10,7 +10,7 @@ export const PROJECTS = [
     image: instagramLogo,
     appPreview: "#",
     description:
-      "An Instagram clone that replicates core features, including authentication, user profiles, posts and more. Built with React, TypeScript, and Firebase, it also integrates real-time chat for seamless communication between users.",
+      "An Instagram clone that replicates core features, including authentication, user profiles, posts and more. Built with 𝐑𝐞𝐚𝐜𝐭, 𝐓𝐲𝐩𝐞𝐒𝐜𝐫𝐢𝐩𝐭, and 𝐅𝐢𝐫𝐞𝐛𝐚𝐬𝐞,, it also integrates real-time chat for seamless communication between users.",
 
     technologies: ["React", "TypeScript", "Firebase", "Bootstrap"],
   },
@@ -19,7 +19,7 @@ export const PROJECTS = [
     image: minichat,
     appPreview: "https://fir-firstproject-71bad.web.app/",
     description:
-      "A real-time chat application with user profiles, and emoji support. Built with React, TypeScript, and Firebase, it features seamless authentication and real-time messaging.",
+      "A real-time chat application with user profiles, and emoji support. Built with 𝐑𝐞𝐚𝐜𝐭, 𝐓𝐲𝐩𝐞𝐒𝐜𝐫𝐢𝐩𝐭, and 𝐅𝐢𝐫𝐞𝐛𝐚𝐬𝐞, it features seamless authentication and real-time messaging.",
 
     technologies: ["React", "TypeScript", "Firebase", "CSS"],
   },
@@ -29,8 +29,7 @@ export const PROJECTS = [
     image: project3,
     appPreview: "https://mystore-eight-delta.vercel.app/",
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-
+      "A personal portfolio website showcasing projects, skills, and contact information, enhanced with smooth animations and interactive elements powered by 𝐅𝐫𝐚𝐦𝐞𝐫 𝐌𝐨𝐭𝐢𝐨𝐧.",
     technologies: ["React", "TypeScript", "Taillwind"],
   },
   {
@@ -38,7 +37,7 @@ export const PROJECTS = [
     image: project3,
     appPreview: "https://cvtemplate-4b972.web.app/",
     description:
-      "This CV template is a modern, responsive application created with React and TypeScript for enhanced type safety. Featuring a clean, professional layout styled with CSS, it allows users to effectively showcase their skills, experience, and education.",
+      "This CV template is a modern, responsive application created with 𝐑𝐞𝐚𝐜𝐭 and 𝐓𝐲𝐩𝐞𝐒𝐜𝐫𝐢𝐩𝐭 for enhanced type safety. Featuring a clean, professional layout styled with 𝐂𝐒𝐒, it allows users to effectively showcase their skills, experience, and education.",
     technologies: ["React", "TypeScript", "CSS"],
   },
   {
@@ -46,7 +45,7 @@ export const PROJECTS = [
     image: gameImg,
     appPreview: "https://tic-toc-toe-game-nine.vercel.app/",
     description:
-      "A classic Tic Tac Toe game built with JavaScript, HTML, and CSS. Though unfinished, it is fully functional, allowing players to take turns, place marks, and aim to align three in a row to win",
+      "A classic Tic Tac Toe game built with 𝐉𝐚𝐯𝐚𝐒𝐜𝐫𝐢𝐩𝐭, 𝐇𝐓𝐌𝐋, and 𝐂𝐒𝐒. Though unfinished, it is fully functional, allowing players to take turns, place marks, and aim to align three in a row to win",
     technologies: ["JavaScript", "HTML", "CSS"],
   },
   {

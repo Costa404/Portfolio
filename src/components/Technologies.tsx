@@ -1,7 +1,7 @@
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandTypescript } from "react-icons/tb";
 import { SiFirebase, SiTailwindcss } from "react-icons/si";
-import { IoLogoJavascript } from "react-icons/io";
+import { IoLogoCss3, IoLogoHtml5, IoLogoJavascript } from "react-icons/io";
 import { motion, Variants } from "framer-motion";
 import { BsBootstrapFill } from "react-icons/bs";
 import { FaSass } from "react-icons/fa";
@@ -53,7 +53,7 @@ const Technologies = () => {
           <TbBrandTypescript className="text-7xl text-sky-700" />
         </motion.div>
         <motion.div
-          variants={iconVariants(2)} // Outra duração para este ícone
+          variants={iconVariants(6)} // Outra duração para este ícone
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4 text-black"
@@ -85,12 +85,28 @@ const Technologies = () => {
           <BsBootstrapFill className="text-7xl text-purple-500" />
         </motion.div>
         <motion.div
-          variants={iconVariants(2)} // Outra duração para este ícone
+          variants={iconVariants(6)} // Outra duração para este ícone
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
         >
           <FaSass className="text-7xl text-pink-500" />
+        </motion.div>
+        <motion.div
+          variants={iconVariants(4)} // Outra duração para este ícone
+          initial="initial"
+          animate="animate"
+          className="rounded-2xl border-4 border-neutral-800 p-4"
+        >
+          <IoLogoHtml5 className="text-7xl text-orange-500" />
+        </motion.div>
+        <motion.div
+          variants={iconVariants(2)} // Outra duração para este ícone
+          initial="initial"
+          animate="animate"
+          className="rounded-2xl border-4 border-neutral-800 p-4"
+        >
+          <IoLogoCss3 className="text-7xl text-blue-500" />
         </motion.div>
       </motion.div>
     </div>
