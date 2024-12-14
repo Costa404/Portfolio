@@ -45,7 +45,7 @@ const Technologies = () => {
           <RiReactjsLine className="text-7xl text-cyan-400" />
         </motion.div>
         <motion.div
-          variants={iconVariants(4)} // Outra duração para este ícone
+          variants={iconVariants(4)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
@@ -53,7 +53,7 @@ const Technologies = () => {
           <TbBrandTypescript className="text-7xl text-sky-700" />
         </motion.div>
         <motion.div
-          variants={iconVariants(6)} // Outra duração para este ícone
+          variants={iconVariants(6)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4 text-black"
@@ -61,7 +61,7 @@ const Technologies = () => {
           <IoLogoJavascript className="text-7xl bg-yellow-400 " />
         </motion.div>
         <motion.div
-          variants={iconVariants(4)} // Outra duração para este ícone
+          variants={iconVariants(4)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
@@ -69,7 +69,7 @@ const Technologies = () => {
           <SiFirebase className="text-7xl text-orange-500" />
         </motion.div>
         <motion.div
-          variants={iconVariants(2)} // Outra duração para este ícone
+          variants={iconVariants(2)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
@@ -77,7 +77,7 @@ const Technologies = () => {
           <SiTailwindcss className="text-7xl text-sky-500" />
         </motion.div>
         <motion.div
-          variants={iconVariants(4)} // Outra duração para este ícone
+          variants={iconVariants(4)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
@@ -85,7 +85,7 @@ const Technologies = () => {
           <BsBootstrapFill className="text-7xl text-purple-500" />
         </motion.div>
         <motion.div
-          variants={iconVariants(6)} // Outra duração para este ícone
+          variants={iconVariants(6)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
@@ -93,7 +93,7 @@ const Technologies = () => {
           <FaSass className="text-7xl text-pink-500" />
         </motion.div>
         <motion.div
-          variants={iconVariants(4)} // Outra duração para este ícone
+          variants={iconVariants(4)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"
@@ -101,7 +101,7 @@ const Technologies = () => {
           <IoLogoHtml5 className="text-7xl text-orange-500" />
         </motion.div>
         <motion.div
-          variants={iconVariants(2)} // Outra duração para este ícone
+          variants={iconVariants(2)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 border-neutral-800 p-4"

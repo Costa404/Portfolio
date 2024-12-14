@@ -8,7 +8,7 @@ export const PROJECTS = [
   {
     title: "Instagram Clone Unfinished",
     image: instagramLogo,
-    appPreview: "#",
+    appPreview: "https://instagramclone-4cb2a.web.app/",
     description:
       "An Instagram clone that replicates core features, including authentication, user profiles, posts and more. Built with 𝐑𝐞𝐚𝐜𝐭, 𝐓𝐲𝐩𝐞𝐒𝐜𝐫𝐢𝐩𝐭, and 𝐅𝐢𝐫𝐞𝐛𝐚𝐬𝐞,, it also integrates real-time chat for seamless communication between users.",
 
