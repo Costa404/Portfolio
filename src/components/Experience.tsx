@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { EXPERIENCES } from "../constants";
 
-// Supondo que você tenha uma constante chamada EXPERIENCES definida em algum lugar
 const Experience = () => {
   return (
     <div className="border-b border-neutral-900 pb-4">
