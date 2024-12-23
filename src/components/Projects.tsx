@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useModal } from "../pages/useModal";
 import { PROJECTS } from "../constants/Projects";
 

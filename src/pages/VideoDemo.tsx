@@ -1,6 +1,6 @@
 import VideoModal from "./videoModal";
 import { useModal } from "./useModal";
-import { useEffect } from "react";
+
 const VideoDemo = () => {
   const { isModalOpen, setModalOpen, setSelectedVideo, selectedVideo } =
     useModal();
