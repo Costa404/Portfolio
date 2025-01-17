@@ -5,7 +5,7 @@ import { IoLogoCss3, IoLogoHtml5, IoLogoJavascript } from "react-icons/io";
 import { motion, Variants } from "framer-motion";
 import { BsBootstrapFill } from "react-icons/bs";
 import { FaNode, FaSass } from "react-icons/fa";
-import { DiMongodb, DiPostgresql } from "react-icons/di";
+import { DiMongodb } from "react-icons/di";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { GrGraphQl } from "react-icons/gr";
 
