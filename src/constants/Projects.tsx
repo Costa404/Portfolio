@@ -13,7 +13,7 @@ export const PROJECTS = [
     title: "myGym Website",
     image: myGym,
 
-    appPreview: "my-gym-app-client.vercel.app",
+    appPreview: "https://my-gym-app-client-costa404s-projects.vercel.app/",
     videoDemo: igClone,
 
     gitHubRepository: "https://github.com/Costa404/myGymApp",
