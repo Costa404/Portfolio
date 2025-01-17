@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Technologies from "./components/Technologies";
+import DetailsProject from "./pages/DetailsProject";
 import { ModalProvider } from "./pages/useModal";
 import VideoDemo from "./pages/VideoDemo";
 
@@ -24,6 +25,7 @@ const App = () => {
           <Projects />
           <Contact />
           <VideoDemo />
+          <DetailsProject />
         </ModalProvider>
       </div>
     </div>

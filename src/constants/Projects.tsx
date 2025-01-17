@@ -2,12 +2,36 @@ import onlineshop from "../assets/Online-shopping-07.gif";
 import project3 from "../assets/projects/project-3.jpg";
 import instagramLogo from "../assets/Instagram_logo_2022.svg.webp";
 import minichat from "../assets/minichat.jpg";
+import myGym from "../assets/myGym.png";
 import landingpage from "../assets/landingpage.png";
 import gameImg from "../assets/game.png";
 import igClone from "../assets/IgClone.mp4";
 import myChat from "../assets/mychat.mp4";
 import cvTemplate from "../assets/cvTemplate.mp4";
 export const PROJECTS = [
+  {
+    title: "myGym Website",
+    image: myGym,
+
+    appPreview: "my-gym-app-client.vercel.app",
+    videoDemo: igClone,
+
+    gitHubRepository: "https://github.com/Costa404/myGymApp",
+    description:
+      "I made this app because I love the gym, so I mixed something useful with something I enjoy. It lets me track my workouts easily, add exercises, set reps, and see my progress. Check technical details for more info. ",
+
+    technologies: [
+      "React",
+      "TypeScript",
+      "MongoDB",
+      "Express",
+      "NodeJs",
+      "GraphQL/ApolloServer",
+      "SocketIO",
+      "Zustand",
+      "Bootstrap",
+    ],
+  },
   {
     title: "Instagram Clone Unfinished",
     image: instagramLogo,
