@@ -6,6 +6,7 @@ import myGym from "../assets/myGym.png";
 import landingpage from "../assets/landingpage.png";
 import gameImg from "../assets/game.png";
 import igClone from "../assets/IgClone.mp4";
+import myGymVid from "../assets/myGym.mp4";
 import myChat from "../assets/mychat.mp4";
 import cvTemplate from "../assets/cvTemplate.mp4";
 export const PROJECTS = [
@@ -14,11 +15,11 @@ export const PROJECTS = [
     image: myGym,
 
     appPreview: "https://my-gym-app-client-costa404s-projects.vercel.app/",
-    videoDemo: igClone,
+    videoDemo: myGymVid,
 
     gitHubRepository: "https://github.com/Costa404/myGymApp",
     description:
-      "I made this app because I love the gym, so I mixed something useful with something I enjoy. It lets me track my workouts easily, add exercises, set reps, and see my progress. Check technical details for more info. ",
+      "I made this app because I love the gym, so I mixed something useful with something I enjoy. It lets me track my workouts easily, add exercises, set reps, and see my progress. The app is still in development, this is just the initial, simpler version. Check technical details for more info. ",
 
     technologies: [
       "React",
