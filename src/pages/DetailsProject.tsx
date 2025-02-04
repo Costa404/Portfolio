@@ -2,20 +2,19 @@ import { useModal } from "./useModal";
 import DetailsModal from "./DetailsModal";
 
 const DetailsProject = () => {
-  const { isModalOpenDetails, setIsModalOpenDetails } = useModal();
+  const { isModalOpenDetails, setIsModalOpenDetails, projectData } = useModal();
 
-  console.log("modalOpen", isModalOpenDetails);
-
-  console.log("modalOpen", isModalOpenDetails);
-
-  // useEffect(() => {
-  //   console.log("isModalOpen updated in DetailsProject ", isModalOpen);
-  // }, [isModalOpen]);
+  // console.log("modalOpenDetails", isModalOpenDetails);
+  // console.log("projectData", projectData);
 
   return (
     <div className="text-center p-6">
-      {isModalOpenDetails && (
+      {isModalOpenDetails && projectData && (
         <DetailsModal
+          title={projectData.title}
+          description={projectData.description}
+          backend={projectData.backend}
+          frontend={projectData.frontend}
           onClose={() => {
             setIsModalOpenDetails(false);
           }}

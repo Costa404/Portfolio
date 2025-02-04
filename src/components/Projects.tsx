@@ -1,27 +1,17 @@
-import { useModal } from "../pages/useModal";
 import { PROJECTS } from "../constants/Projects";
+import { useModal } from "../pages/useModal";
 
 const Projects = () => {
   const {
     setSelectedVideo,
     setModalOpen,
-    isModalOpen,
-    selectedVideo,
+
     setIsModalOpenDetails,
+    setProjectData,
   } = useModal();
-
-  console.log("setModalOpen", setModalOpen);
-  console.log("setSelectedVideo", setSelectedVideo);
-
-  console.log("isModalOpen", isModalOpen);
-  console.log("selectedVideo", selectedVideo);
 
   const stylebtn =
     "mb-4 mr-2 rounded bg-neutral-800 px-2 py-1 text-sm font-medium text-neutral hover";
-
-  // useEffect(() => {
-  //   console.log("isModalOpen updated: ", isModalOpen);
-  // }, [isModalOpen]);
 
   return (
     <div className="border-b border-neutral-900 pb-4">
@@ -45,10 +35,11 @@ const Projects = () => {
                 <a href={project.appPreview} className={stylebtn}>
                   View Live App
                 </a>
-                {index < 1 && (
+                {index < 3 && (
                   <a
                     onClick={(e) => {
                       e.preventDefault();
+                      setProjectData(project.technicalDetails ?? null);
                       setIsModalOpenDetails(true);
                     }}
                     className={stylebtn}
@@ -56,6 +47,7 @@ const Projects = () => {
                     Technical Details
                   </a>
                 )}
+
                 {index < 3 && (
                   <a
                     className={stylebtn}

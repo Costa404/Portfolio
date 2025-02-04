@@ -4,15 +4,20 @@ export const ABOUT_TEXT = `I am a dedicated and versatile  𝐖𝐞𝐛 𝐃𝐞
 
 export const EXPERIENCES = [
   {
-    year: "2024",
+    year: "2024-Present",
     role: "Independent Developer",
-    company: "Self-Employed",
-    description: `Developed personal projects independently, focusing on full-stack applications using React, TypeScript, and Firebase. Implemented features such as real-time data synchronization, user authentication, and cloud storage, strengthening my capabilities in both Frontend and Backend development.`,
+
+    description:
+      "Developed personal projects independently, focusing on full-stack applications using React and TypeScript. For the backend, I worked with various databases and technologies, including NodeJS, MongoDB, GraphQL, PostgreSQL, and Express. Implemented features such as real-time data synchronization, user authentication, and cloud storage, strengthening my capabilities in both frontend and backend development.",
     technologies: [
       "React",
       "TypeScript",
+      "NodeJS",
+      "PostGreSQL",
+      "MongoDB",
       "Firebase",
-      "JavaScript",
+      "GraphQL",
+      "Rest Api",
       "Tailwind",
       "Bootstrap",
     ],

@@ -1,5 +1,5 @@
-import VideoModal from "./videoModal";
 import { useModal } from "./useModal";
+import VideoModal from "./videoModal";
 
 const VideoDemo = () => {
   const { isModalOpen, setModalOpen, setSelectedVideo, selectedVideo } =
