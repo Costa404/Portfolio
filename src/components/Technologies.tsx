@@ -4,7 +4,7 @@ import { SiFirebase, SiTailwindcss } from "react-icons/si";
 import { IoLogoCss3, IoLogoHtml5, IoLogoJavascript } from "react-icons/io";
 import { motion, Variants } from "framer-motion";
 import { BsBootstrapFill } from "react-icons/bs";
-import { FaNode, FaSass } from "react-icons/fa";
+import { FaAngular, FaNode, FaSass } from "react-icons/fa";
 import { DiMongodb } from "react-icons/di";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { GrGraphQl } from "react-icons/gr";
@@ -63,6 +63,14 @@ const Technologies = () => {
             className="rounded-2xl border-4 border-neutral-800 p-4"
           >
             <RiReactjsLine className="text-7xl text-cyan-400" />
+          </motion.div>
+          <motion.div
+            variants={iconVariants(3)}
+            initial="initial"
+            animate="animate"
+            className="rounded-2xl border-4 border-neutral-800 p-4"
+          >
+            <FaAngular className="text-7xl text-red-700" />
           </motion.div>
           <motion.div
             variants={iconVariants(4)}

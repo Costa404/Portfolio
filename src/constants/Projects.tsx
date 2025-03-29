@@ -11,8 +11,28 @@ import myGymVid from "../assets/myGym.mp4";
 import myMovieTracker from "../assets/myMovieTracker.mp4";
 import myChat from "../assets/mychat.mp4";
 import cvTemplate from "../assets/cvTemplate.mp4";
+import CodeMentor from "../assets/codeMentor.jpg";
 export const PROJECTS = [
+  // {
+  //   title: "CodeMentor",
+  //   image: CodeMentor,
+
+  //   appPreview: "",
+  //   videoDemo: myMovieTracker,
+  //   technicalDetails: {
+  //     title: "codeMentor",
+  //     description: "",
+
+  //     backend: "",
+  //     frontend: "",
+  //   },
+  // },
   {
+    //   ============================================
+
+    // NEW PROJECT
+
+    //   ============================================
     title: "myMovie Tracker",
     image: myMovie,
 
