@@ -35,7 +35,7 @@ const Projects = () => {
                 <a href={project.appPreview} className={stylebtn}>
                   View Live App
                 </a>
-                {index < 3 && (
+                {index < 4 && (
                   <a
                     onClick={(e) => {
                       e.preventDefault();
@@ -48,7 +48,7 @@ const Projects = () => {
                   </a>
                 )}
 
-                {index < 3 && (
+                {index < 6 && (
                   <a
                     className={stylebtn}
                     onClick={(e) => {
