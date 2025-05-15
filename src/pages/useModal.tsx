@@ -3,8 +3,8 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface ProjectData {
   title: string;
   description: string;
-  backend: string;
-  frontend: string;
+  backend?: string;
+  frontend?: string;
 }
 
 interface ModalContextType {

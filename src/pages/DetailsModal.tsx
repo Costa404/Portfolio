@@ -4,8 +4,8 @@ import ReactDOM from "react-dom";
 interface DetailsModalProps {
   title: string;
   description: string;
-  backend: string;
-  frontend: string;
+  backend?: string;
+  frontend?: string;
   onClose: () => void;
 }
 
@@ -26,11 +26,19 @@ const DetailsModal: React.FC<DetailsModalProps> = ({
 
           <p className="mt-8">{description}</p>
 
-          <h4 className="mt-8 font-semibold">Backend</h4>
-          <p className="mt-4">{backend}</p>
+          {backend && (
+            <>
+              <h4 className="mt-8 font-semibold">Backend</h4>
+              <p className="mt-4">{backend}</p>
+            </>
+          )}
 
-          <h4 className="mt-8 font-semibold">Frontend</h4>
-          <p className="mt-4">{frontend}</p>
+          {frontend && (
+            <>
+              <h4 className="mt-8 font-semibold">Frontend</h4>
+              <p className="mt-4">{frontend}</p>
+            </>
+          )}
         </div>
         <button
           onClick={onClose}
