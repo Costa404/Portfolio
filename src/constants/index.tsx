@@ -1,54 +1,57 @@
-export const HERO_CONTENT = `I'm a passionate 𝐉𝐮𝐧𝐢𝐨𝐫 𝐒𝐨𝐟𝐭𝐰𝐚𝐫𝐞 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 focused on building visually engaging and scalable web applications. With a foundation in modern Frontend technologies like 𝐉𝐚𝐯𝐚𝐒𝐜𝐫𝐢𝐩𝐭, 𝐑𝐞𝐚𝐜𝐭𝐉𝐒, 𝐀𝐧𝐠𝐮𝐥𝐚𝐫 and 𝐓𝐲𝐩𝐞𝐒𝐜𝐫𝐢𝐩𝐭, I also have experience working with 𝐁𝐚𝐜𝐤𝐞𝐧𝐝 tools such as 𝐍𝐨𝐝𝐞𝐉𝐬, 𝐌𝐨𝐧𝐠𝐨𝐃𝐁, 𝐏𝐨𝐬𝐭𝐠𝐫𝐞𝐒𝐐𝐋 and 𝐅𝐢𝐫𝐞𝐛𝐚𝐬𝐞. I’m driven to leverage my skills to create innovative solutions that enhance user experience and support business growth. Excited to keep growing my expertise and make a meaningful impact through my work! `;
+export const HERO_CONTENT = `Full-Stack Software Engineer dedicated to architecting scalable, resilient web applications and modern digital solutions. Skilled across frontend frameworks, backend microservices, real-time databases, and cloud infrastructure.`;
 
-export const ABOUT_TEXT = `I am a dedicated and versatile 𝐒𝐨𝐟𝐭𝐰𝐚𝐫𝐞 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 with a passion for creating efficient and user-friendly web applications.  My journey in software development began with a deep curiosity for how things work, and it has evolved into a hobby where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active and music`;
+export const ABOUT_TEXT = `Versatile Software Engineer with a passion for designing scalable full-stack web applications, clean APIs, and intuitive user interfaces using modern engineering best practices.`;
 
 export const EXPERIENCES = [
   {
-    year: "2024-Present",
-    role: "Independent Developer",
-
+    year: "April 2026 - Present",
+    role: "Software Engineer Intern",
+    company: "Decskill | Porto, Portugal",
+    project: "+MMAIS - Pediatric Oncology Exercise Platform (ULS São João)",
     description:
-      "Developed personal projects independently, focusing on full-stack applications using React and TypeScript. For the backend, I worked with various databases and technologies, including NodeJS, MongoDB, GraphQL, PostgreSQL, and Express. Implemented features such as real-time data synchronization, user authentication, and cloud storage, strengthening my capabilities in both frontend and backend development.",
-    technologies: [
-      "React",
-      "Angular",
-      "TypeScript",
-      "NodeJS",
-      "PostGreSQL",
-      "MongoDB",
-      "Firebase",
-      "GraphQL",
-      "Tailwind",
-      "Bootstrap",
-    ],
+      "Lead development for a gamified platform (ULS São João) promoting physical activity among hospitalized children. Architected modular backends with NestJS (TypeScript), dynamic React interfaces, and real-time synchronization with Supabase.",
+    technologies: ["NestJS", "TypeScript", "React", "Supabase", "PostgreSQL"],
+  },
+  {
+    year: "2024 - Present",
+    role: "Freelance Full Stack Developer",
+    company: "Upwork & Fiverr",
+    description:
+      "Developed and deployed scalable web solutions for international clients using React, Node.js, Express, and TypeScript.",
+    technologies: ["React", "Node.js", "TypeScript", "Tailwind CSS", "Docker"],
+  },
+];
+
+export const EDUCATION = [
+  {
+    year: "2025 - Present",
+    degree: "Specialist Technician in Information Systems Technologies and Programming",
+    institution: "Cesae Digital | Porto, Portugal",
+    description:
+      "Advanced technical specialization in software architecture, systems development, database management, and programming.",
+    technologies: [],
   },
   {
     year: "2024",
-    role: "Bootcamp Student",
-    company: "EDIT",
-    description: `Participated in a full-stack development bootcamp where I gained hands-on experience with technologies such as JavaScript, React, Node.js, and databases. Developed multiple projects that enhanced my skills in both Frontend and Backend development.`,
-    technologies: [
-      "JavaScript",
-      "React",
-      "TypeScript",
-      "HTML",
-      "CSS",
-      "MongoDB",
-      "NodeJS",
-    ],
+    degree: "Full Stack Development Certification",
+    institution: "EDIT - Disruptive Digital Education | Porto, Portugal",
+    description:
+      "Intensive full-stack development bootcamp focused on JavaScript, React, Node.js, databases, REST APIs, and agile team workflows.",
+    technologies: ["JavaScript", "React", "Node.js", "MongoDB", "Express"],
   },
-
   {
-    year: "2023",
-    role: "Self-Learning Frontend Developer",
-    company: "Personal Growth",
-    description: `Engaged in self-directed learning of modern web technologies, specifically focusing on Frontend development with JavaScript frameworks. Developed a strong foundation in creating responsive and interactive user interfaces.`,
-    technologies: ["JavaScript", "CSS", "HTML"],
+    year: "Certification",
+    degree: "Project Management & Agile Fundamentals",
+    institution: "Santander Open Academy",
+    description:
+      "Certification in agile software development methodologies, project planning, and team collaboration frameworks.",
+    technologies: ["Agile", "Scrum", "Project Management"],
   },
 ];
 
 export const CONTACT = {
   address: "Porto, Portugal",
-  phoneNo: "+351 966 167 836 ",
   email: "nuno-costa17@hotmail.com",
+  github: "https://github.com/Costa404",
+  linkedin: "https://www.linkedin.com/in/nunocosta404/",
 };

@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-interface ProjectData {
+export interface ProjectData {
   title: string;
   description: string;
   backend?: string;
   frontend?: string;
+  architecture?: string;
 }
 
 interface ModalContextType {

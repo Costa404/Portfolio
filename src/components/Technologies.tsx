@@ -1,228 +1,99 @@
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandTypescript, TbSql } from "react-icons/tb";
-import { SiFirebase, SiTailwindcss } from "react-icons/si";
-import { IoLogoCss3, IoLogoHtml5, IoLogoJavascript } from "react-icons/io";
-import { motion, Variants } from "framer-motion";
-import { BsBootstrapFill } from "react-icons/bs";
-import { FaAngular, FaNode, FaSass } from "react-icons/fa";
+import { SiFirebase, SiTailwindcss, SiLaravel, SiDocker, SiPython, SiThreedotjs } from "react-icons/si";
+import { IoLogoCss3, IoLogoJavascript } from "react-icons/io5";
+import { motion } from "framer-motion";
+import { FaAngular, FaNode } from "react-icons/fa";
 import { DiMongodb } from "react-icons/di";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { GrGraphQl } from "react-icons/gr";
 
-const iconVariants = (duration: number): Variants => ({
-  initial: { y: -10 },
-  animate: {
-    y: [10, -10],
-    transition: {
-      duration: duration,
-      ease: "linear",
-      repeat: Infinity,
-      repeatType: "reverse",
-    },
-  },
-});
-
 const Technologies = () => {
+  const categories = [
+    {
+      name: "Frontend & 3D Tech",
+      items: [
+        { name: "React", icon: <RiReactjsLine className="text-4xl text-cyan-400" /> },
+        { name: "TypeScript", icon: <TbBrandTypescript className="text-4xl text-sky-400" /> },
+        { name: "Angular", icon: <FaAngular className="text-4xl text-red-500" /> },
+        { name: "JavaScript", icon: <IoLogoJavascript className="text-4xl text-amber-400" /> },
+        { name: "Three.js / R3F", icon: <SiThreedotjs className="text-4xl text-zinc-100" /> },
+        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-4xl text-cyan-300" /> },
+        { name: "CSS3", icon: <IoLogoCss3 className="text-4xl text-blue-400" /> },
+      ],
+    },
+    {
+      name: "Backend, APIs & Architecture",
+      items: [
+        { name: "Laravel 12", icon: <SiLaravel className="text-4xl text-rose-500" /> },
+        { name: "Node.js", icon: <FaNode className="text-4xl text-emerald-500" /> },
+        { name: "Python", icon: <SiPython className="text-4xl text-yellow-400" /> },
+        { name: "GraphQL", icon: <GrGraphQl className="text-4xl text-pink-500" /> },
+        { name: "PostgreSQL", icon: <BiLogoPostgresql className="text-4xl text-blue-400" /> },
+        { name: "MongoDB", icon: <DiMongodb className="text-4xl text-emerald-400" /> },
+        { name: "Firebase", icon: <SiFirebase className="text-4xl text-amber-500" /> },
+        { name: "SQL", icon: <TbSql className="text-4xl text-indigo-400" /> },
+      ],
+    },
+    {
+      name: "DevOps, Security & Tooling",
+      items: [
+        { name: "Docker", icon: <SiDocker className="text-4xl text-sky-400" /> },
+        { name: "IndexedDB / Dexie", icon: <TbSql className="text-4xl text-emerald-300" /> },
+        { name: "WebAuthn / Passkeys", icon: <TbBrandTypescript className="text-4xl text-purple-400" /> },
+      ],
+    },
+  ];
+
   return (
-    <div className="border-b border-neutral-800 pb-24 flex flex-col">
-      <motion.h1
+    <div className="py-8">
+      <motion.div
         whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 1.5 }}
-        className="my-10 text-center text-4xl"
+        initial={{ opacity: 0, y: 20 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center space-y-3 mb-12"
       >
-        Technologies
-      </motion.h1>
-
-      {/* =======================
-
-      Frontend
-
-      ======================= */}
-
-      <motion.div>
-        <motion.h3
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: -100 }}
-          transition={{ duration: 1.5 }}
-          className="my-10 text-center text-4xl"
-        >
-          Frontend
-        </motion.h3>
-
-        <motion.div
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 1.5 }}
-          className="flex flex-wrap items-center justify-center gap-4"
-        >
-          <motion.div
-            variants={iconVariants(2)}
-            initial="initial"
-            animate="animate"
-            className="rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <RiReactjsLine className="text-7xl text-cyan-400" />
-          </motion.div>
-          <motion.div
-            variants={iconVariants(3)}
-            initial="initial"
-            animate="animate"
-            className="rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <FaAngular className="text-7xl text-red-700" />
-          </motion.div>
-          <motion.div
-            variants={iconVariants(4)}
-            initial="initial"
-            animate="animate"
-            className="rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <TbBrandTypescript className="text-7xl text-sky-700" />
-          </motion.div>
-          <motion.div
-            variants={iconVariants(6)}
-            initial="initial"
-            animate="animate"
-            className="rounded-2xl border-4 border-neutral-800 p-4 text-black"
-          >
-            <IoLogoJavascript className="text-7xl bg-yellow-400 " />
-          </motion.div>
-          <motion.div
-            variants={iconVariants(4)}
-            initial="initial"
-            animate="animate"
-            className="rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <IoLogoHtml5 className="text-7xl text-orange-500" />
-          </motion.div>
-        </motion.div>
-        {/* =======================
-
-      backend
-
-      ======================= */}
-        <motion.div
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 1.5 }}
-          className="flex flex-col flex-wrap items-center justify-center gap-4"
-        >
-          <motion.h3
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: -100 }}
-            transition={{ duration: 1.5 }}
-            className="my-10 text-center text-4xl"
-          >
-            Backend
-          </motion.h3>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <motion.div
-              variants={iconVariants(2)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4 text-black"
-            >
-              <DiMongodb className="text-7xl text-green-400 " />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(4)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <SiFirebase className="text-7xl text-orange-500" />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(6)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <TbSql className="text-7xl text-blue-800" />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(4)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <GrGraphQl className="text-7xl text-blue-800" />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(2)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <FaNode className="text-7xl text-green-500" />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(6)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <BiLogoPostgresql className="text-7xl text-blue-500" />
-            </motion.div>
-          </div>
-        </motion.div>
-        {/* =======================
-
-      styling
-
-      ======================= */}
-        <motion.div
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 1.5 }}
-          className="flex flex-col flex-wrap items-center justify-center gap-4"
-        >
-          <motion.h3
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: -100 }}
-            transition={{ duration: 1.5 }}
-            className="my-10 text-center text-4xl"
-          >
-            Styling
-          </motion.h3>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <motion.div
-              variants={iconVariants(2)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <SiTailwindcss className="text-7xl text-sky-500" />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(4)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <BsBootstrapFill className="text-7xl text-purple-500" />
-            </motion.div>
-
-            <motion.div
-              variants={iconVariants(6)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <FaSass className="text-7xl text-pink-500" />
-            </motion.div>
-            <motion.div
-              variants={iconVariants(4)}
-              initial="initial"
-              animate="animate"
-              className="rounded-2xl border-4 border-neutral-800 p-4"
-            >
-              <IoLogoCss3 className="text-7xl text-blue-500" />
-            </motion.div>
-          </div>
-        </motion.div>
+        <span className="text-xs font-semibold uppercase tracking-widest text-indigo-400">
+          Core Competencies & Stack
+        </span>
+        <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
+          Technologies & Tools
+        </h2>
       </motion.div>
+
+      <div className="space-y-10">
+        {categories.map((cat, catIndex) => (
+          <motion.div
+            key={catIndex}
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+            className="space-y-4"
+          >
+            <h3 className="font-heading text-lg font-semibold text-zinc-300 border-l-2 border-indigo-500 pl-3">
+              {cat.name}
+            </h3>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+              {cat.items.map((item, itemIndex) => (
+                <div
+                  key={itemIndex}
+                  className="glass-card glass-card-hover rounded-xl p-4 flex flex-col items-center justify-center space-y-2 group text-center"
+                >
+                  <div className="group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                  <span className="text-xs font-medium text-zinc-300 group-hover:text-white transition-colors">
+                    {item.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
