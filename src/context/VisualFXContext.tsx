@@ -75,7 +75,7 @@ interface VisualFXContextType {
 const VisualFXContext = createContext<VisualFXContextType | undefined>(undefined);
 
 export const VisualFXProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mode, setMode] = useState<FXMode>("silk");
+  const [mode, setMode] = useState<FXMode>("dust");
   const [theme, setTheme] = useState<ColorTheme>("cyan");
   const [particleSpeed, setParticleSpeed] = useState<number>(0.8);
   const [particleDensity, setParticleDensity] = useState<"low" | "medium" | "high">("medium");
@@ -93,7 +93,7 @@ export const VisualFXProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Auto-cycle through modes if enabled
   useEffect(() => {
     if (!autoCycle) return;
-    const modes: FXMode[] = ["silk", "kinetic", "dust", "horizon"];
+    const modes: FXMode[] = ["dust", "silk", "kinetic", "horizon"];
     const themes: ColorTheme[] = ["cyan", "slate", "emerald", "sapphire"];
     let index = 0;
 

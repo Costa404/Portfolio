@@ -12,7 +12,6 @@ import VideoDemo from "./pages/VideoDemo";
 import { VisualFXProvider } from "./context/VisualFXContext";
 import { VisualFXCanvas } from "./components/VisualFXCanvas";
 import { MouseSpotlight } from "./components/MouseSpotlight";
-import { BackgroundControls } from "./components/BackgroundControls";
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -26,15 +25,12 @@ const ScrollToTop = () => {
 const App = () => {
   return (
     <VisualFXProvider>
-      <div className="relative min-h-screen text-zinc-300 antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+      <div className="relative min-h-screen text-zinc-300 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
         {/* 3D WebGL Canvas Background */}
         <VisualFXCanvas />
 
         {/* Interactive Mouse Spotlight Halo */}
         <MouseSpotlight />
-
-        {/* Floating Visual FX Controls HUD */}
-        <BackgroundControls />
 
         <ModalProvider>
           <ScrollToTop />
