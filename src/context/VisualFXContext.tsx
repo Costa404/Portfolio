@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type FXMode = "nebula" | "hyperdrive" | "aurora" | "plasma";
-export type ColorTheme = "cosmic" | "cyberpunk" | "matrix" | "solar";
+export type FXMode = "silk" | "kinetic" | "dust" | "horizon";
+export type ColorTheme = "cyan" | "slate" | "emerald" | "sapphire";
 
 export interface ColorPalette {
   primary: string;
@@ -14,41 +14,41 @@ export interface ColorPalette {
 }
 
 export const COLOR_PALETTES: Record<ColorTheme, ColorPalette> = {
-  cosmic: {
-    primary: "#818cf8", // Soft Ice Indigo
-    secondary: "#c084fc", // Soft Violet
+  cyan: {
+    primary: "#06b6d4", // Ice Cyan
+    secondary: "#10b981", // Emerald Teal
     accent: "#38bdf8", // Ice Blue
-    background: "#05060a", // Deepest Onyx Void
-    glow: "rgba(129, 140, 248, 0.2)",
-    rgbPrimary: [0.5, 0.55, 0.97],
-    rgbSecondary: [0.75, 0.52, 0.98],
+    background: "#090b10", // Deep Charcoal Slate
+    glow: "rgba(6, 182, 212, 0.25)",
+    rgbPrimary: [0.02, 0.71, 0.83],
+    rgbSecondary: [0.06, 0.72, 0.5],
   },
-  cyberpunk: {
-    primary: "#6366f1", // Electric Indigo
-    secondary: "#a855f7", // Royal Purple
-    accent: "#06b6d4", // Deep Teal Glow
-    background: "#040508",
-    glow: "rgba(99, 102, 241, 0.22)",
-    rgbPrimary: [0.38, 0.4, 0.94],
-    rgbSecondary: [0.65, 0.33, 0.96],
+  slate: {
+    primary: "#f8fafc", // Pure Swiss White
+    secondary: "#94a3b8", // Slate Muted
+    accent: "#06b6d4", // Ice Cyan Tint
+    background: "#08090d", // Charcoal Void
+    glow: "rgba(248, 250, 252, 0.15)",
+    rgbPrimary: [0.97, 0.98, 0.99],
+    rgbSecondary: [0.58, 0.64, 0.72],
   },
-  matrix: {
-    primary: "#14b8a6", // Sleek Teal
-    secondary: "#06b6d4", // Ice Cyan
-    accent: "#10b981", // Emerald Glow
-    background: "#030807",
-    glow: "rgba(20, 184, 166, 0.2)",
-    rgbPrimary: [0.08, 0.72, 0.65],
-    rgbSecondary: [0.02, 0.71, 0.83],
+  emerald: {
+    primary: "#10b981", // Deep Emerald
+    secondary: "#34d399", // Mint Teal
+    accent: "#06b6d4", // Ice Cyan
+    background: "#050b08", // Charcoal Mint
+    glow: "rgba(16, 185, 129, 0.22)",
+    rgbPrimary: [0.06, 0.72, 0.5],
+    rgbSecondary: [0.2, 0.83, 0.6],
   },
-  solar: {
-    primary: "#fbbf24", // Champagne Gold
-    secondary: "#f59e0b", // Amber Glow
-    accent: "#d97706", // Bronze Accent
-    background: "#080604",
-    glow: "rgba(251, 191, 36, 0.18)",
-    rgbPrimary: [0.98, 0.75, 0.14],
-    rgbSecondary: [0.96, 0.62, 0.04],
+  sapphire: {
+    primary: "#3b82f6", // Electric Blue
+    secondary: "#60a5fa", // Soft Sapphire
+    accent: "#06b6d4", // Ice Cyan
+    background: "#060812", // Charcoal Navy
+    glow: "rgba(59, 130, 246, 0.22)",
+    rgbPrimary: [0.23, 0.51, 0.96],
+    rgbSecondary: [0.38, 0.65, 0.98],
   },
 };
 
@@ -75,10 +75,10 @@ interface VisualFXContextType {
 const VisualFXContext = createContext<VisualFXContextType | undefined>(undefined);
 
 export const VisualFXProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mode, setMode] = useState<FXMode>("nebula");
-  const [theme, setTheme] = useState<ColorTheme>("cosmic");
-  const [particleSpeed, setParticleSpeed] = useState<number>(1);
-  const [particleDensity, setParticleDensity] = useState<"low" | "medium" | "high">("high");
+  const [mode, setMode] = useState<FXMode>("silk");
+  const [theme, setTheme] = useState<ColorTheme>("cyan");
+  const [particleSpeed, setParticleSpeed] = useState<number>(0.8);
+  const [particleDensity, setParticleDensity] = useState<"low" | "medium" | "high">("medium");
   const [mouseInteraction, setMouseInteraction] = useState<boolean>(true);
   const [mouseGlowEnabled, setMouseGlowEnabled] = useState<boolean>(true);
   const [autoCycle, setAutoCycle] = useState<boolean>(false);
@@ -93,8 +93,8 @@ export const VisualFXProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Auto-cycle through modes if enabled
   useEffect(() => {
     if (!autoCycle) return;
-    const modes: FXMode[] = ["nebula", "hyperdrive", "aurora", "plasma"];
-    const themes: ColorTheme[] = ["cosmic", "cyberpunk", "matrix", "solar"];
+    const modes: FXMode[] = ["silk", "kinetic", "dust", "horizon"];
+    const themes: ColorTheme[] = ["cyan", "slate", "emerald", "sapphire"];
     let index = 0;
 
     const interval = setInterval(() => {

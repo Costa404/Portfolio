@@ -4,26 +4,22 @@ import { useVisualFX, COLOR_PALETTES } from "../context/VisualFXContext";
 
 export const VisualFXCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { mode, theme, particleSpeed, particleDensity, mouseInteraction, clickRipple } = useVisualFX();
+  const { mode, theme, particleSpeed, mouseInteraction, clickRipple } = useVisualFX();
 
-  // Track mouse coordinates
-  const mouseRef = useRef<{ x: number; y: number; targetX: number; targetY: number; px: number; py: number }>({
+  // Mouse tracking (normalized -1 to +1)
+  const mouseRef = useRef<{ x: number; y: number; targetX: number; targetY: number }>({
     x: 0,
     y: 0,
     targetX: 0,
     targetY: 0,
-    px: 0,
-    py: 0,
   });
 
   const scrollRef = useRef<{ y: number; velY: number }>({ y: 0, velY: 0 });
   const createShockwaveRef = useRef<((x: number, y: number) => void) | null>(null);
 
-  // Store active mode and theme in refs for animation loop access
   const modeRef = useRef(mode);
   const themeRef = useRef(theme);
   const speedRef = useRef(particleSpeed);
-  const densityRef = useRef(particleDensity);
   const mouseInteractionRef = useRef(mouseInteraction);
 
   useEffect(() => {
@@ -39,26 +35,16 @@ export const VisualFXCanvas: React.FC = () => {
   }, [particleSpeed]);
 
   useEffect(() => {
-    densityRef.current = particleDensity;
-  }, [particleDensity]);
-
-  useEffect(() => {
     mouseInteractionRef.current = mouseInteraction;
   }, [mouseInteraction]);
 
   // Handle Mouse movement & Scroll
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-
-      const nx = (e.clientX / windowWidth) * 2 - 1;
-      const ny = -(e.clientY / windowHeight) * 2 + 1;
-
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = -(e.clientY / window.innerHeight) * 2 + 1;
       mouseRef.current.targetX = nx;
       mouseRef.current.targetY = ny;
-      mouseRef.current.px = e.clientX;
-      mouseRef.current.py = e.clientY;
     };
 
     let lastScrollY = window.scrollY;
@@ -78,22 +64,22 @@ export const VisualFXCanvas: React.FC = () => {
     };
   }, []);
 
-  // Main Three.js Scene Setup & Loop
+  // Three.js Setup & Main Render Loop
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x08090c, 0.035);
+    scene.fog = new THREE.FogExp2(0x030406, 0.025);
 
     const camera = new THREE.PerspectiveCamera(
-      60,
+      55,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     );
-    camera.position.z = 15;
+    camera.position.set(0, 0, 18);
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -106,190 +92,214 @@ export const VisualFXCanvas: React.FC = () => {
 
     container.appendChild(renderer.domElement);
 
-    // 2. Lights Setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Ambient Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const pointLight1 = new THREE.PointLight(0x6366f1, 3, 35);
-    pointLight1.position.set(5, 5, 5);
-    scene.add(pointLight1);
+    const pointLight = new THREE.PointLight(0xffffff, 1.5, 40);
+    pointLight.position.set(0, 10, 10);
+    scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0xec4899, 2, 35);
-    pointLight2.position.set(-5, -5, 5);
-    scene.add(pointLight2);
-
-    // Create Circular Glow Canvas Texture for particles
-    const createParticleTexture = () => {
+    // Create Soft Glow Texture for Minimal Particles
+    const createDotTexture = () => {
       const canvas = document.createElement("canvas");
-      canvas.width = 64;
-      canvas.height = 64;
+      canvas.width = 32;
+      canvas.height = 32;
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+        const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
         gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-        gradient.addColorStop(0.3, "rgba(255, 255, 255, 0.8)");
-        gradient.addColorStop(0.6, "rgba(255, 255, 255, 0.2)");
+        gradient.addColorStop(0.4, "rgba(255, 255, 255, 0.5)");
         gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
         ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 64, 64);
+        ctx.fillRect(0, 0, 32, 32);
       }
       return new THREE.CanvasTexture(canvas);
     };
 
-    const particleTexture = createParticleTexture();
-
-    // 3. PARTICLE SYSTEM
-    const particleCount = densityRef.current === "low" ? 700 : densityRef.current === "medium" ? 1400 : 2200;
-    const particleGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const velocities = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-
+    const dotTexture = createDotTexture();
     const palette = COLOR_PALETTES[themeRef.current];
 
-    for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-      const x = (Math.random() - 0.5) * 35;
-      const y = (Math.random() - 0.5) * 35;
-      const z = (Math.random() - 0.5) * 30;
+    // ==========================================
+    // EFFECT 1: TOPOLOGICAL SILK GRID MATRIX
+    // ==========================================
+    const gridCols = 45;
+    const gridRows = 35;
+    const gridCount = gridCols * gridRows;
+    const silkGeo = new THREE.BufferGeometry();
+    const silkPositions = new Float32Array(gridCount * 3);
+    const silkColors = new Float32Array(gridCount * 3);
 
-      positions[i3] = x;
-      positions[i3 + 1] = y;
-      positions[i3 + 2] = z;
+    let idx = 0;
+    const gridSpacingX = 0.8;
+    const gridSpacingY = 0.6;
+    const offsetX = (gridCols * gridSpacingX) / 2;
+    const offsetY = (gridRows * gridSpacingY) / 2;
 
-      velocities[i3] = (Math.random() - 0.5) * 0.02;
-      velocities[i3 + 1] = (Math.random() - 0.5) * 0.02;
-      velocities[i3 + 2] = (Math.random() - 0.5) * 0.02;
+    for (let r = 0; r < gridRows; r++) {
+      for (let c = 0; c < gridCols; c++) {
+        const i3 = idx * 3;
+        silkPositions[i3] = c * gridSpacingX - offsetX;
+        silkPositions[i3 + 1] = r * gridSpacingY - offsetY;
+        silkPositions[i3 + 2] = 0;
 
-      // Blend primary & secondary palette colors
-      const mixRatio = Math.random();
-      colors[i3] = THREE.MathUtils.lerp(palette.rgbPrimary[0], palette.rgbSecondary[0], mixRatio);
-      colors[i3 + 1] = THREE.MathUtils.lerp(palette.rgbPrimary[1], palette.rgbSecondary[1], mixRatio);
-      colors[i3 + 2] = THREE.MathUtils.lerp(palette.rgbPrimary[2], palette.rgbSecondary[2], mixRatio);
+        silkColors[i3] = palette.rgbPrimary[0];
+        silkColors[i3 + 1] = palette.rgbPrimary[1];
+        silkColors[i3 + 2] = palette.rgbPrimary[2];
+        idx++;
+      }
     }
 
-    particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    particleGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    silkGeo.setAttribute("position", new THREE.BufferAttribute(silkPositions, 3));
+    silkGeo.setAttribute("color", new THREE.BufferAttribute(silkColors, 3));
 
-    const particleMat = new THREE.PointsMaterial({
-      size: 0.35,
-      map: particleTexture,
+    const silkMat = new THREE.PointsMaterial({
+      size: 0.22,
+      map: dotTexture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.65,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
 
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
+    const silkPoints = new THREE.Points(silkGeo, silkMat);
+    silkPoints.rotation.x = -Math.PI / 4;
+    silkPoints.position.set(0, -2, -2);
+    scene.add(silkPoints);
 
-    // 4. LINE NETWORK (Constellation Mesh)
-    const maxConnections = particleCount * 2;
-    const lineGeo = new THREE.BufferGeometry();
-    const linePositions = new Float32Array(maxConnections * 6);
-    const lineColors = new Float32Array(maxConnections * 6);
-    lineGeo.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
-    lineGeo.setAttribute("color", new THREE.BufferAttribute(lineColors, 3));
+    // Hairline Wireframe Mesh linking Silk Grid
+    const silkLinesGeo = new THREE.BufferGeometry();
+    const maxGridLines = gridCount * 4;
+    const silkLinePositions = new Float32Array(maxGridLines * 6);
+    const silkLineColors = new Float32Array(maxGridLines * 6);
+    silkLinesGeo.setAttribute("position", new THREE.BufferAttribute(silkLinePositions, 3));
+    silkLinesGeo.setAttribute("color", new THREE.BufferAttribute(silkLineColors, 3));
 
-    const lineMat = new THREE.LineBasicMaterial({
+    const silkLineMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.25,
+      opacity: 0.12,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
 
-    const lineMesh = new THREE.LineSegments(lineGeo, lineMat);
-    scene.add(lineMesh);
+    const silkLines = new THREE.LineSegments(silkLinesGeo, silkLineMat);
+    silkPoints.add(silkLines);
 
-    // 5. MORPHING 3D HOLOGRAM POLYHEDRON (Floating Core)
-    const coreGeo = new THREE.IcosahedronGeometry(3.5, 2);
-    const coreMat = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(palette.primary),
-      wireframe: true,
-      transparent: true,
-      opacity: 0.25,
-      roughness: 0.2,
-      metalness: 0.8,
-    });
-    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    coreMesh.position.set(6, 2, -5);
-    scene.add(coreMesh);
-
-    // Inner glowing core
-    const innerCoreGeo = new THREE.TorusKnotGeometry(1.8, 0.4, 64, 16);
-    const innerCoreMat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color(palette.secondary),
-      wireframe: true,
-      transparent: true,
-      opacity: 0.4,
-      blending: THREE.AdditiveBlending,
-    });
-    const innerCoreMesh = new THREE.Mesh(innerCoreGeo, innerCoreMat);
-    coreMesh.add(innerCoreMesh);
-
-    // 6. AURORA 3D UNDULATING WAVE PLANE
-    const auroraGeo = new THREE.PlaneGeometry(50, 40, 50, 40);
-    const auroraMat = new THREE.MeshBasicMaterial({
+    // ==========================================
+    // EFFECT 2: KINETIC GEOMETRY (FLOATING WIREFRAMES)
+    // ==========================================
+    const kineticGroup = new THREE.Group();
+    
+    // Polyhedron 1: Sleek Icosahedron
+    const icoGeo = new THREE.IcosahedronGeometry(3, 1);
+    const icoMat = new THREE.MeshBasicMaterial({
       color: new THREE.Color(palette.primary),
       wireframe: true,
       transparent: true,
       opacity: 0.15,
       blending: THREE.AdditiveBlending,
     });
-    const auroraMesh = new THREE.Mesh(auroraGeo, auroraMat);
-    auroraMesh.rotation.x = -Math.PI / 3;
-    auroraMesh.position.set(0, -6, -2);
-    auroraMesh.visible = false;
-    scene.add(auroraMesh);
+    const icoMesh = new THREE.Mesh(icoGeo, icoMat);
+    icoMesh.position.set(7, 2, -4);
+    kineticGroup.add(icoMesh);
 
-    // 7. PLASMA ORBS
-    const plasmaGroup = new THREE.Group();
-    const orbGeom = new THREE.SphereGeometry(0.8, 32, 32);
-    const orbs: { mesh: THREE.Mesh; orbitSpeed: number; orbitRadius: number; phase: number }[] = [];
+    // Polyhedron 2: Minimal Octahedron
+    const octaGeo = new THREE.OctahedronGeometry(2.2, 0);
+    const octaMat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(palette.secondary),
+      wireframe: true,
+      transparent: true,
+      opacity: 0.18,
+      blending: THREE.AdditiveBlending,
+    });
+    const octaMesh = new THREE.Mesh(octaGeo, octaMat);
+    octaMesh.position.set(-7, -3, -3);
+    kineticGroup.add(octaMesh);
 
-    for (let i = 0; i < 5; i++) {
-      const orbMat = new THREE.MeshPhysicalMaterial({
-        color: new THREE.Color(i % 2 === 0 ? palette.primary : palette.secondary),
-        emissive: new THREE.Color(i % 2 === 0 ? palette.primary : palette.secondary),
-        emissiveIntensity: 0.6,
-        roughness: 0.1,
-        metalness: 0.9,
-        transparent: true,
-        opacity: 0.7,
-      });
-      const orb = new THREE.Mesh(orbGeom, orbMat);
-      const orbitRadius = 6 + i * 2.5;
-      const phase = (i * Math.PI * 2) / 5;
-      orb.position.set(Math.cos(phase) * orbitRadius, Math.sin(phase) * 3, Math.sin(phase) * orbitRadius - 5);
-      plasmaGroup.add(orb);
-      orbs.push({ mesh: orb, orbitSpeed: 0.3 + i * 0.1, orbitRadius, phase });
+    // Polyhedron 3: Torus Ring Wireframe
+    const ringGeo = new THREE.TorusGeometry(3.5, 0.05, 16, 100);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(palette.primary),
+      transparent: true,
+      opacity: 0.2,
+      blending: THREE.AdditiveBlending,
+    });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    ringMesh.rotation.x = Math.PI / 3;
+    ringMesh.position.set(0, 1, -6);
+    kineticGroup.add(ringMesh);
+
+    kineticGroup.visible = false;
+    scene.add(kineticGroup);
+
+    // ==========================================
+    // EFFECT 3: MINIMAL DUST PARTICLES
+    // ==========================================
+    const dustCount = 450;
+    const dustGeo = new THREE.BufferGeometry();
+    const dustPositions = new Float32Array(dustCount * 3);
+    const dustVelocities = new Float32Array(dustCount * 3);
+    const dustColors = new Float32Array(dustCount * 3);
+
+    for (let i = 0; i < dustCount; i++) {
+      const i3 = i * 3;
+      dustPositions[i3] = (Math.random() - 0.5) * 35;
+      dustPositions[i3 + 1] = (Math.random() - 0.5) * 35;
+      dustPositions[i3 + 2] = (Math.random() - 0.5) * 25;
+
+      dustVelocities[i3] = (Math.random() - 0.5) * 0.008;
+      dustVelocities[i3 + 1] = (Math.random() - 0.5) * 0.008;
+      dustVelocities[i3 + 2] = (Math.random() - 0.5) * 0.008;
+
+      dustColors[i3] = palette.rgbPrimary[0];
+      dustColors[i3 + 1] = palette.rgbPrimary[1];
+      dustColors[i3 + 2] = palette.rgbPrimary[2];
     }
-    plasmaGroup.visible = false;
-    scene.add(plasmaGroup);
 
-    // 8. SHOCKWAVE SYSTEM
+    dustGeo.setAttribute("position", new THREE.BufferAttribute(dustPositions, 3));
+    dustGeo.setAttribute("color", new THREE.BufferAttribute(dustColors, 3));
+
+    const dustMat = new THREE.PointsMaterial({
+      size: 0.25,
+      map: dotTexture,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+
+    const dustPoints = new THREE.Points(dustGeo, dustMat);
+    dustPoints.visible = false;
+    scene.add(dustPoints);
+
+    // ==========================================
+    // EFFECT 4: SHOCKWAVES
+    // ==========================================
     const shockwaves: { mesh: THREE.Mesh; opacity: number; scale: number }[] = [];
-    const shockGeo = new THREE.RingGeometry(0.1, 0.4, 32);
+    const shockGeo = new THREE.RingGeometry(0.1, 0.35, 32);
 
     const createShockwave = (worldX: number, worldY: number) => {
       const shockMat = new THREE.MeshBasicMaterial({
-        color: new THREE.Color(COLOR_PALETTES[themeRef.current].secondary),
+        color: new THREE.Color(COLOR_PALETTES[themeRef.current].primary),
         side: THREE.DoubleSide,
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.5,
         blending: THREE.AdditiveBlending,
       });
       const shockMesh = new THREE.Mesh(shockGeo, shockMat);
       shockMesh.position.set(worldX, worldY, 2);
       scene.add(shockMesh);
-      shockwaves.push({ mesh: shockMesh, opacity: 0.9, scale: 1 });
+      shockwaves.push({ mesh: shockMesh, opacity: 0.5, scale: 1 });
     };
 
     createShockwaveRef.current = createShockwave;
 
-    // 9. ANIMATION LOOP
+    // ==========================================
+    // RENDER ANIMATION LOOP
+    // ==========================================
     const clock = new THREE.Clock();
     let animationFrameId: number;
 
@@ -300,161 +310,163 @@ export const VisualFXCanvas: React.FC = () => {
       const currentPalette = COLOR_PALETTES[themeRef.current];
       const speed = speedRef.current;
 
-      // Smooth mouse interpolation (lerp)
-      mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.08;
-      mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.08;
+      // Smooth mouse lerp
+      mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.06;
+      mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.06;
 
-      // Update lights colors to active palette
-      pointLight1.color.set(currentPalette.primary);
-      pointLight2.color.set(currentPalette.secondary);
-      coreMat.color.set(currentPalette.primary);
-      innerCoreMat.color.set(currentPalette.secondary);
-      auroraMat.color.set(currentPalette.primary);
+      // Update palette colors
+      icoMat.color.set(currentPalette.primary);
+      octaMat.color.set(currentPalette.secondary);
+      ringMat.color.set(currentPalette.primary);
+      silkLineMat.color.set(currentPalette.primary);
+      pointLight.color.set(currentPalette.primary);
 
-      // Camera parallax subtly follows mouse
-      camera.position.x = mouseRef.current.x * 1.2;
-      camera.position.y = mouseRef.current.y * 1.2;
+      // Camera soft parallax
+      camera.position.x = mouseRef.current.x * 0.8;
+      camera.position.y = mouseRef.current.y * 0.8;
       camera.lookAt(0, 0, 0);
 
-      // --- Mode Specific Visibility & Behavior ---
-      auroraMesh.visible = currentMode === "aurora";
-      plasmaGroup.visible = currentMode === "plasma";
-      coreMesh.visible = currentMode === "nebula" || currentMode === "aurora";
+      // Visibility toggles
+      silkPoints.visible = currentMode === "silk" || currentMode === "horizon";
+      kineticGroup.visible = currentMode === "kinetic";
+      dustPoints.visible = currentMode === "dust";
 
-      // 1. Core Polyhedron Animation
-      if (coreMesh.visible) {
-        coreMesh.rotation.x = elapsedTime * 0.15 * speed;
-        coreMesh.rotation.y = elapsedTime * 0.2 * speed;
-        innerCoreMesh.rotation.z = -elapsedTime * 0.3 * speed;
-        coreMesh.position.y = 2 + Math.sin(elapsedTime * 1.5) * 0.4;
-      }
+      // 1. SILK TOPOLOGICAL WAVE MATRIX ANIMATION
+      if (silkPoints.visible) {
+        const posAttr = silkGeo.attributes.position;
+        const colAttr = silkGeo.attributes.color;
+        const linePosArr = silkLinesGeo.attributes.position.array as Float32Array;
+        const lineColArr = silkLinesGeo.attributes.color.array as Float32Array;
 
-      // 2. Aurora Wave Animation
-      if (currentMode === "aurora") {
-        const posAttr = auroraGeo.attributes.position;
-        for (let i = 0; i < posAttr.count; i++) {
-          const u = posAttr.getX(i);
-          const v = posAttr.getY(i);
-          const z =
-            Math.sin(u * 0.2 + elapsedTime * 1.5 * speed) * 1.2 +
-            Math.cos(v * 0.2 + elapsedTime * 1.2 * speed) * 1.2 +
-            Math.sin((u + v) * 0.1 + mouseRef.current.x * 2) * 0.8;
-          posAttr.setZ(i, z);
-        }
-        posAttr.needsUpdate = true;
-      }
+        const mouseWorldX = mouseRef.current.x * 12;
+        const mouseWorldY = mouseRef.current.y * 8;
 
-      // 3. Plasma Orbs Animation
-      if (currentMode === "plasma") {
-        plasmaGroup.rotation.y = elapsedTime * 0.2 * speed;
-        orbs.forEach((orbObj) => {
-          const angle = elapsedTime * orbObj.orbitSpeed * speed + orbObj.phase;
-          orbObj.mesh.position.x = Math.cos(angle) * orbObj.orbitRadius;
-          orbObj.mesh.position.z = Math.sin(angle) * orbObj.orbitRadius;
-          orbObj.mesh.position.y = Math.sin(angle * 2 + elapsedTime) * 1.8;
-        });
-      }
-
-      // 4. Particle Animation & Physics
-      const posAttribute = particleGeo.attributes.position;
-      const mouseWorldX = mouseRef.current.x * 15;
-      const mouseWorldY = mouseRef.current.y * 10;
-
-      for (let i = 0; i < particleCount; i++) {
-        const i3 = i * 3;
-
-        if (currentMode === "hyperdrive") {
-          // Hyperdrive Tunnel Zoom
-          positions[i3 + 2] += (0.25 + Math.abs(scrollRef.current.velY) * 0.5) * speed;
-          if (positions[i3 + 2] > 20) {
-            positions[i3 + 2] = -30;
-            positions[i3] = (Math.random() - 0.5) * 35;
-            positions[i3 + 1] = (Math.random() - 0.5) * 35;
-          }
-        } else {
-          // Nebula / Aurora / Plasma Drift
-          positions[i3] += velocities[i3] * speed;
-          positions[i3 + 1] += velocities[i3 + 1] * speed + scrollRef.current.velY * 0.02;
-          positions[i3 + 2] += velocities[i3 + 2] * speed;
-
-          // Boundary checks & soft bounce
-          if (Math.abs(positions[i3]) > 20) velocities[i3] *= -1;
-          if (Math.abs(positions[i3 + 1]) > 18) velocities[i3 + 1] *= -1;
-          if (Math.abs(positions[i3 + 2]) > 18) velocities[i3 + 2] *= -1;
-
-          // Mouse Gravitational / Repulsion Physics
-          if (mouseInteractionRef.current) {
-            const dx = positions[i3] - mouseWorldX;
-            const dy = positions[i3 + 1] - mouseWorldY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 4.5) {
-              const force = (4.5 - dist) / 4.5;
-              positions[i3] += (dx / dist) * force * 0.25;
-              positions[i3 + 1] += (dy / dist) * force * 0.25;
-            }
-          }
-        }
-      }
-
-      posAttribute.needsUpdate = true;
-
-      // 5. Constellation Line Network Updates (Nebula Mode)
-      if (currentMode === "nebula") {
         let lineIdx = 0;
-        const linePosArray = lineGeo.attributes.position.array as Float32Array;
-        const lineColArray = lineGeo.attributes.color.array as Float32Array;
 
-        const maxDist = 2.4;
-        const step = densityRef.current === "high" ? 2 : 1;
+        for (let r = 0; r < gridRows; r++) {
+          for (let c = 0; c < gridCols; c++) {
+            const index = r * gridCols + c;
 
-        for (let i = 0; i < particleCount; i += step) {
-          const i3 = i * 3;
-          for (let j = i + 1; j < particleCount; j += step * 2) {
-            const j3 = j * 3;
-            const dx = positions[i3] - positions[j3];
-            const dy = positions[i3 + 1] - positions[j3 + 1];
-            const dz = positions[i3 + 2] - positions[j3 + 2];
-            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            const u = posAttr.getX(index);
+            const v = posAttr.getY(index);
 
-            if (dist < maxDist && lineIdx < maxConnections - 1) {
-              const alpha = 1 - dist / maxDist;
-              const lPosIdx = lineIdx * 6;
+            // Natural organic topological wave formula
+            let waveZ =
+              Math.sin(u * 0.25 + elapsedTime * 1.2 * speed) * 0.7 +
+              Math.cos(v * 0.3 + elapsedTime * 1.0 * speed) * 0.6 +
+              Math.sin((u + v) * 0.15 + elapsedTime * 0.8) * 0.4;
 
-              linePosArray[lPosIdx] = positions[i3];
-              linePosArray[lPosIdx + 1] = positions[i3 + 1];
-              linePosArray[lPosIdx + 2] = positions[i3 + 2];
+            // Mouse proximity ripple height boost
+            if (mouseInteractionRef.current) {
+              const dx = u - mouseWorldX;
+              const dy = v - mouseWorldY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 4) {
+                const mouseForce = (4 - dist) / 4;
+                waveZ += Math.sin(dist * 2.5 - elapsedTime * 4) * mouseForce * 1.2;
+              }
+            }
 
-              linePosArray[lPosIdx + 3] = positions[j3];
-              linePosArray[lPosIdx + 4] = positions[j3 + 1];
-              linePosArray[lPosIdx + 5] = positions[j3 + 2];
+            posAttr.setZ(index, waveZ);
 
-              // Color glow
-              lineColArray[lPosIdx] = currentPalette.rgbPrimary[0] * alpha;
-              lineColArray[lPosIdx + 1] = currentPalette.rgbPrimary[1] * alpha;
-              lineColArray[lPosIdx + 2] = currentPalette.rgbPrimary[2] * alpha;
+            // Color gradient mapped to height
+            const heightMix = (waveZ + 1.5) / 3;
+            colAttr.setXYZ(
+              index,
+              THREE.MathUtils.lerp(currentPalette.rgbSecondary[0], currentPalette.rgbPrimary[0], heightMix),
+              THREE.MathUtils.lerp(currentPalette.rgbSecondary[1], currentPalette.rgbPrimary[1], heightMix),
+              THREE.MathUtils.lerp(currentPalette.rgbSecondary[2], currentPalette.rgbPrimary[2], heightMix)
+            );
 
-              lineColArray[lPosIdx + 3] = currentPalette.rgbSecondary[0] * alpha;
-              lineColArray[lPosIdx + 4] = currentPalette.rgbSecondary[1] * alpha;
-              lineColArray[lPosIdx + 5] = currentPalette.rgbSecondary[2] * alpha;
+            // Build grid wireframe connections to right & top neighbors
+            if (c < gridCols - 1 && lineIdx < maxGridLines - 1) {
+              const rightIndex = index + 1;
+              const lIdx = lineIdx * 6;
 
+              linePosArr[lIdx] = posAttr.getX(index);
+              linePosArr[lIdx + 1] = posAttr.getY(index);
+              linePosArr[lIdx + 2] = waveZ;
+
+              linePosArr[lIdx + 3] = posAttr.getX(rightIndex);
+              linePosArr[lIdx + 4] = posAttr.getY(rightIndex);
+              linePosArr[lIdx + 5] = posAttr.getZ(rightIndex);
+
+              lineColArr[lIdx] = currentPalette.rgbPrimary[0] * 0.3;
+              lineColArr[lIdx + 1] = currentPalette.rgbPrimary[1] * 0.3;
+              lineColArr[lIdx + 2] = currentPalette.rgbPrimary[2] * 0.3;
+
+              lineColArr[lIdx + 3] = currentPalette.rgbPrimary[0] * 0.3;
+              lineColArr[lIdx + 4] = currentPalette.rgbPrimary[1] * 0.3;
+              lineColArr[lIdx + 5] = currentPalette.rgbPrimary[2] * 0.3;
+              lineIdx++;
+            }
+
+            if (r < gridRows - 1 && lineIdx < maxGridLines - 1) {
+              const topIndex = index + gridCols;
+              const lIdx = lineIdx * 6;
+
+              linePosArr[lIdx] = posAttr.getX(index);
+              linePosArr[lIdx + 1] = posAttr.getY(index);
+              linePosArr[lIdx + 2] = waveZ;
+
+              linePosArr[lIdx + 3] = posAttr.getX(topIndex);
+              linePosArr[lIdx + 4] = posAttr.getY(topIndex);
+              linePosArr[lIdx + 5] = posAttr.getZ(topIndex);
+
+              lineColArr[lIdx] = currentPalette.rgbPrimary[0] * 0.3;
+              lineColArr[lIdx + 1] = currentPalette.rgbPrimary[1] * 0.3;
+              lineColArr[lIdx + 2] = currentPalette.rgbPrimary[2] * 0.3;
+
+              lineColArr[lIdx + 3] = currentPalette.rgbPrimary[0] * 0.3;
+              lineColArr[lIdx + 4] = currentPalette.rgbPrimary[1] * 0.3;
+              lineColArr[lIdx + 5] = currentPalette.rgbPrimary[2] * 0.3;
               lineIdx++;
             }
           }
         }
-        lineGeo.setDrawRange(0, lineIdx * 2);
-        lineGeo.attributes.position.needsUpdate = true;
-        lineGeo.attributes.color.needsUpdate = true;
-        lineMesh.visible = true;
-      } else {
-        lineMesh.visible = false;
+
+        posAttr.needsUpdate = true;
+        colAttr.needsUpdate = true;
+        silkLinesGeo.setDrawRange(0, lineIdx * 2);
+        silkLinesGeo.attributes.position.needsUpdate = true;
+        silkLinesGeo.attributes.color.needsUpdate = true;
       }
 
-      // 6. Shockwaves Animation
+      // 2. KINETIC GEOMETRY ANIMATION
+      if (currentMode === "kinetic") {
+        icoMesh.rotation.x = elapsedTime * 0.12 * speed;
+        icoMesh.rotation.y = elapsedTime * 0.15 * speed;
+
+        octaMesh.rotation.x = -elapsedTime * 0.18 * speed;
+        octaMesh.rotation.z = elapsedTime * 0.1 * speed;
+
+        ringMesh.rotation.z = elapsedTime * 0.08 * speed;
+
+        kineticGroup.rotation.y = mouseRef.current.x * 0.2;
+        kineticGroup.rotation.x = -mouseRef.current.y * 0.2;
+      }
+
+      // 3. MINIMAL DUST ANIMATION
+      if (currentMode === "dust") {
+        const dustPosAttr = dustGeo.attributes.position;
+        for (let i = 0; i < dustCount; i++) {
+          const i3 = i * 3;
+          dustPositions[i3] += dustVelocities[i3] * speed;
+          dustPositions[i3 + 1] += dustVelocities[i3 + 1] * speed + scrollRef.current.velY * 0.01;
+          dustPositions[i3 + 2] += dustVelocities[i3 + 2] * speed;
+
+          if (Math.abs(dustPositions[i3]) > 18) dustVelocities[i3] *= -1;
+          if (Math.abs(dustPositions[i3 + 1]) > 18) dustVelocities[i3 + 1] *= -1;
+          if (Math.abs(dustPositions[i3 + 2]) > 14) dustVelocities[i3 + 2] *= -1;
+        }
+        dustPosAttr.needsUpdate = true;
+      }
+
+      // 4. SHOCKWAVE ANIMATION
       for (let i = shockwaves.length - 1; i >= 0; i--) {
         const sw = shockwaves[i];
-        sw.scale += 0.4;
-        sw.opacity -= 0.025;
+        sw.scale += 0.3;
+        sw.opacity -= 0.02;
         sw.mesh.scale.set(sw.scale, sw.scale, 1);
         (sw.mesh.material as THREE.MeshBasicMaterial).opacity = Math.max(0, sw.opacity);
 
@@ -466,15 +478,12 @@ export const VisualFXCanvas: React.FC = () => {
         }
       }
 
-      // Decay scroll velocity dampening
       scrollRef.current.velY *= 0.92;
-
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // 10. Window Resize Handler
     const handleResize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -485,23 +494,23 @@ export const VisualFXCanvas: React.FC = () => {
 
     window.addEventListener("resize", handleResize);
 
-    // Clean up WebGL resources on unmount
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
 
-      particleGeo.dispose();
-      particleMat.dispose();
-      particleTexture.dispose();
-      lineGeo.dispose();
-      lineMat.dispose();
-      coreGeo.dispose();
-      coreMat.dispose();
-      innerCoreGeo.dispose();
-      innerCoreMat.dispose();
-      auroraGeo.dispose();
-      auroraMat.dispose();
-      orbGeom.dispose();
+      silkGeo.dispose();
+      silkMat.dispose();
+      silkLinesGeo.dispose();
+      silkLineMat.dispose();
+      icoGeo.dispose();
+      icoMat.dispose();
+      octaGeo.dispose();
+      octaMat.dispose();
+      ringGeo.dispose();
+      ringMat.dispose();
+      dustGeo.dispose();
+      dustMat.dispose();
+      dotTexture.dispose();
       shockGeo.dispose();
 
       if (container.contains(renderer.domElement)) {
@@ -511,7 +520,7 @@ export const VisualFXCanvas: React.FC = () => {
     };
   }, []);
 
-  // Trigger shockwave when click Ripple updates
+  // Trigger shockwave on click ripple
   useEffect(() => {
     if (clickRipple && createShockwaveRef.current) {
       const worldX = (clickRipple.x / window.innerWidth) * 20 - 10;
@@ -525,7 +534,7 @@ export const VisualFXCanvas: React.FC = () => {
       ref={containerRef}
       className="fixed inset-0 pointer-events-none -z-10 overflow-hidden transition-opacity duration-1000"
       style={{
-        background: `radial-gradient(circle at 50% 30%, ${COLOR_PALETTES[theme].background} 0%, #030407 100%)`,
+        background: `radial-gradient(circle at 50% 25%, ${COLOR_PALETTES[theme].background} 0%, #020304 100%)`,
       }}
     />
   );

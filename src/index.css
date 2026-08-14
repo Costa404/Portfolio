@@ -1,58 +1,59 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Plus Jakarta Sans", "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color-scheme: dark;
   --mouse-x: 50%;
   --mouse-y: 50%;
 }
 
 body {
-  background-color: #050609;
-  color: #e4e4e7;
+  background-color: #090b10;
+  color: #f1f5f9;
   overflow-x: hidden;
-  font-family: "Inter", sans-serif;
-  letter-spacing: -0.01em;
+  font-family: "Plus Jakarta Sans", "Geist", sans-serif;
+  letter-spacing: -0.015em;
 }
 
 /* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050609;
+  background: #090b10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2233;
+  background: #1e2433;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
+  background: #06b6d4;
 }
 
-/* Futuristic Typography Classes */
+/* Swiss Clean Tech Typography */
 .font-heading {
-  font-family: "Outfit", "Sora", sans-serif;
+  font-family: "Plus Jakarta Sans", "Geist", sans-serif;
   letter-spacing: -0.025em;
+  font-weight: 700;
 }
 
 .font-code, .font-mono {
   font-family: "JetBrains Mono", monospace;
 }
 
-/* Glassmorphism & Harmonized Proximity Lighting */
+/* Deep Charcoal Glassmorphism & Ice Cyan Proximity Spotlight */
 .glass-card {
   position: relative;
-  background: rgba(12, 15, 24, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 18, 26, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -64,7 +65,7 @@ body {
   padding: 1px;
   background: radial-gradient(
     450px circle at var(--mouse-x) var(--mouse-y),
-    rgba(129, 140, 248, 0.3),
+    rgba(6, 182, 212, 0.35),
     transparent 80%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -85,28 +86,28 @@ body {
 }
 
 .glass-card-hover:hover {
-  background: rgba(18, 22, 36, 0.85);
-  border-color: rgba(129, 140, 248, 0.3);
-  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7), 0 0 35px -10px rgba(99, 102, 241, 0.2);
-  transform: translateY(-3px);
+  background: rgba(20, 25, 36, 0.85);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8), 0 0 30px -10px rgba(6, 182, 212, 0.25);
+  transform: translateY(-2px);
 }
 
 .glass-nav {
-  background: rgba(8, 10, 16, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(9, 11, 16, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Gradient Text Utilities */
+/* Ice Cyan & Platinum Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 50%, #818cf8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 40%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-subtle {
-  background: linear-gradient(135deg, #e4e4e7 0%, #a5b4fc 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -114,10 +115,10 @@ body {
 /* Animated Border Glow Pulse */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
   }
   50% {
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.35);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.35);
   }
 }
 

@@ -18,7 +18,7 @@ export const MouseSpotlight: React.FC = () => {
     const handleMouseDown = (e: MouseEvent) => {
       setIsClicking(true);
       triggerShockwave(e.clientX, e.clientY);
-      setTimeout(() => setIsClicking(false), 300);
+      setTimeout(() => setIsClicking(false), 250);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -34,26 +34,26 @@ export const MouseSpotlight: React.FC = () => {
 
   return (
     <>
-      {/* Smooth Cursor Follow Radial Light */}
+      {/* Subtle Minimal Radial Spotlight Light */}
       <div
         className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 hidden md:block"
         style={{
-          background: `radial-gradient(650px circle at ${pos.x}px ${pos.y}px, ${palette.glow}, transparent 80%)`,
+          background: `radial-gradient(550px circle at ${pos.x}px ${pos.y}px, ${palette.glow}, transparent 75%)`,
         }}
       />
 
-      {/* Interactive Cursor Pulse Point */}
+      {/* Sleek Minimal Precision Cursor Point */}
       <div
         className="pointer-events-none fixed z-50 rounded-full transition-transform duration-75 hidden md:block"
         style={{
           left: `${pos.x}px`,
           top: `${pos.y}px`,
-          width: isClicking ? "40px" : "12px",
-          height: isClicking ? "40px" : "12px",
+          width: isClicking ? "28px" : "8px",
+          height: isClicking ? "28px" : "8px",
           transform: "translate(-50%, -50%)",
           background: palette.primary,
-          boxShadow: `0 0 25px 8px ${palette.primary}`,
-          opacity: isClicking ? 0.9 : 0.4,
+          boxShadow: `0 0 15px 3px ${palette.primary}`,
+          opacity: isClicking ? 0.8 : 0.4,
         }}
       />
     </>
