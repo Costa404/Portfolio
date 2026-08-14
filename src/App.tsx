@@ -9,6 +9,10 @@ import ContactPage from "./pages/ContactPage";
 import DetailsProject from "./pages/DetailsProject";
 import { ModalProvider } from "./pages/useModal";
 import VideoDemo from "./pages/VideoDemo";
+import { VisualFXProvider } from "./context/VisualFXContext";
+import { VisualFXCanvas } from "./components/VisualFXCanvas";
+import { MouseSpotlight } from "./components/MouseSpotlight";
+import { BackgroundControls } from "./components/BackgroundControls";
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -21,47 +25,40 @@ const ScrollToTop = () => {
 
 const App = () => {
   return (
-    <div className="relative min-h-screen text-zinc-300 antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* 2026 Dark Grid Ambient Canvas */}
-      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[#08090c]" />
-        
-        {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]" 
-          style={{ 
-            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px)`, 
-            backgroundSize: '24px 24px' 
-          }} 
-        />
-        
-        {/* Soft Ambient Lights */}
-        <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full bg-gradient-to-tr from-indigo-900/20 via-purple-900/15 to-transparent blur-[140px]" />
-        <div className="absolute top-[60%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-950/10 blur-[160px]" />
-      </div>
+    <VisualFXProvider>
+      <div className="relative min-h-screen text-zinc-300 antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+        {/* 3D WebGL Canvas Background */}
+        <VisualFXCanvas />
 
-      <ModalProvider>
-        <ScrollToTop />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Navbar />
-          
-          <main className="pb-16 min-h-[75vh]">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/experience" element={<ExperiencePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              {/* Fallback redirect to Home */}
-              <Route path="*" element={<HomePage />} />
-            </Routes>
-          </main>
-          
-          <VideoDemo />
-          <DetailsProject />
-        </div>
-      </ModalProvider>
-    </div>
+        {/* Interactive Mouse Spotlight Halo */}
+        <MouseSpotlight />
+
+        {/* Floating Visual FX Controls HUD */}
+        <BackgroundControls />
+
+        <ModalProvider>
+          <ScrollToTop />
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Navbar />
+
+            <main className="pb-16 min-h-[75vh]">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/experience" element={<ExperiencePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                {/* Fallback redirect to Home */}
+                <Route path="*" element={<HomePage />} />
+              </Routes>
+            </main>
+
+            <VideoDemo />
+            <DetailsProject />
+          </div>
+        </ModalProvider>
+      </div>
+    </VisualFXProvider>
   );
 };
 
