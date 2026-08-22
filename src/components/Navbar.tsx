@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import {
   HiBars3,
   HiXMark,
@@ -12,10 +12,22 @@ import {
 } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
 import { CONTACT } from "../constants";
+import { MagneticButton } from "./MagneticButton";
+import { useSoundFX, useSoundStore } from "../hooks/useSoundFX";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { playTick, playPop, playToggleOn } = useSoundFX();
+  const { muted, toggleMute } = useSoundStore();
+
+  const handleToggleSound = () => {
+    toggleMute();
+    if (muted) {
+      // Was muted, now unmuting — play feedback
+      playToggleOn();
+    }
+  };
 
   const navLinks = [
     { name: "Home", path: "/", icon: HiOutlineHome },
@@ -77,23 +89,26 @@ const Navbar = () => {
         {/* Desktop Nav Links (md screens and up) */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
           {navLinks.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-full transition-all duration-300 ${
-                  isActive
-                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 font-semibold"
-                    : "text-zinc-400 hover:text-white hover:bg-white/5"
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
+            <MagneticButton key={link.name} strength={0.25} radius={60}>
+              <NavLink
+                to={link.path}
+                onMouseEnter={playTick}
+                onClick={playPop}
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 font-semibold"
+                      : "text-zinc-400 hover:text-white hover:bg-white/5"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            </MagneticButton>
           ))}
         </nav>
 
-        {/* Desktop Social Links */}
+        {/* Desktop Social Links & Sound Toggle */}
         <div className="hidden md:flex items-center gap-2 text-base">
           <a
             href={CONTACT.linkedin}
@@ -113,6 +128,23 @@ const Navbar = () => {
           >
             <FaGithub className="w-5 h-5" />
           </a>
+
+          {/* Sound Toggle */}
+          <button
+            onClick={handleToggleSound}
+            aria-label={muted ? "Enable sound" : "Mute sound"}
+            className={`p-2 rounded-full transition-all ${
+              muted
+                ? "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
+                : "text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
+            }`}
+          >
+            {muted ? (
+              <FaVolumeMute className="w-4 h-4" />
+            ) : (
+              <FaVolumeUp className="w-4 h-4" />
+            )}
+          </button>
         </div>
 
         {/* Mobile Hamburger Toggle Button (md:hidden) */}

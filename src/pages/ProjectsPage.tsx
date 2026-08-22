@@ -2,6 +2,7 @@ import { PROJECTS } from "../constants/Projects";
 import { useModal } from "./useModal";
 import { motion } from "framer-motion";
 import { FaInfoCircle, FaPlayCircle } from "react-icons/fa";
+import SplitText from "../components/SplitText";
 
 const ProjectsPage = () => {
   const { setSelectedVideo, setModalOpen, setIsModalOpenDetails, setProjectData } = useModal();
@@ -17,9 +18,13 @@ const ProjectsPage = () => {
         <span className="text-xs font-semibold uppercase tracking-widest text-indigo-400">
           Software Engineering Showcase
         </span>
-        <h1 className="font-heading text-3xl sm:text-5xl font-bold text-white">
-          Projects & Architecture
-        </h1>
+        <SplitText
+          text="Projects & Architecture"
+          as="h1"
+          variant="cascade"
+          trigger="load"
+          className="font-heading text-3xl sm:text-5xl font-bold text-white"
+        />
         <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto">
           Explore healthcare platforms, offline-first PWAs, AI code analysis engines, and 3D web physics engines.
         </p>

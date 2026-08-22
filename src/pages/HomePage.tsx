@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { HERO_CONTENT, CONTACT } from "../constants";
 import { PROJECTS } from "../constants/Projects";
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope, FaLightbulb, FaRocket } from "react-icons/fa";
+import SplitText from "../components/SplitText";
+import { MagneticButton } from "../components/MagneticButton";
+import { useSoundFX } from "../hooks/useSoundFX";
 
 const HomePage = () => {
   const featuredProjects = PROJECTS.slice(0, 3); // Decskill +MMAIS, GymTracker, Code Mentor
+  const { playTick, playPop } = useSoundFX();
 
   return (
     <div className="space-y-16 py-6">
@@ -32,12 +36,21 @@ const HomePage = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-2"
           >
-            <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white">
-              Nuno Costa
-            </h1>
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold gradient-text">
-              Full-Stack Software Engineer
-            </h2>
+            <SplitText
+              text="Nuno Costa"
+              as="h1"
+              variant="cascade"
+              trigger="load"
+              className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+            />
+            <SplitText
+              text="Full-Stack Software Engineer"
+              as="h2"
+              variant="mask"
+              trigger="load"
+              delay={0.4}
+              className="font-heading text-2xl sm:text-3xl font-semibold gradient-text"
+            />
           </motion.div>
 
           <motion.p
@@ -55,21 +68,29 @@ const HomePage = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-wrap items-center gap-4 pt-2"
           >
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/25 group"
-            >
-              Explore Projects
-              <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <MagneticButton strength={0.4} radius={100}>
+              <Link
+                to="/projects"
+                onClick={playPop}
+                onMouseEnter={playTick}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/25 group"
+              >
+                Explore Projects
+                <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </MagneticButton>
 
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass-card hover:bg-white/10 text-white font-medium text-sm transition-all border border-white/10"
-            >
-              <FaEnvelope className="text-zinc-400" />
-              Contact Me
-            </Link>
+            <MagneticButton strength={0.3}>
+              <Link
+                to="/contact"
+                onClick={playPop}
+                onMouseEnter={playTick}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass-card hover:bg-white/10 text-white font-medium text-sm transition-all border border-white/10"
+              >
+                <FaEnvelope className="text-zinc-400" />
+                Contact Me
+              </Link>
+            </MagneticButton>
 
             <a
               href={CONTACT.github}
@@ -151,7 +172,12 @@ const HomePage = () => {
               Featured Flagships
             </span>
             <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white">
-              Highlight Work
+              <SplitText
+                text="Highlight Work"
+                as="span"
+                variant="cascade"
+                trigger="inView"
+              />
             </h2>
           </div>
 

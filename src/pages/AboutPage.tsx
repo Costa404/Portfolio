@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Technologies from "../components/Technologies";
 import { FaCode, FaDatabase, FaCube, FaBrain } from "react-icons/fa";
+import SplitText from "../components/SplitText";
 
 const AboutPage = () => {
   const highlights = [
@@ -38,9 +39,13 @@ const AboutPage = () => {
         <span className="text-xs font-semibold uppercase tracking-widest text-indigo-400">
           Engineering Background
         </span>
-        <h1 className="font-heading text-3xl sm:text-5xl font-bold text-white">
-          About Me
-        </h1>
+        <SplitText
+          text="About Me"
+          as="h1"
+          variant="cascade"
+          trigger="load"
+          className="font-heading text-3xl sm:text-5xl font-bold text-white"
+        />
         <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto">
           Passionate Software Engineer based in Porto, Portugal. Focused on clean architecture, resilient web systems, and high-impact software.
         </p>

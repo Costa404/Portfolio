@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Plus Jakarta Sans", "Geist", "sans-serif"],
-        sans: ["Plus Jakarta Sans", "Geist", "sans-serif"],
+        heading: ["Space Mono", "Geist", "monospace"],
+        sans: ["Space Mono", "Geist", "monospace"],
         mono: ["JetBrains Mono", "monospace"],
       },
     },
