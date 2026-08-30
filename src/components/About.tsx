@@ -6,8 +6,8 @@ const About = () => {
   const highlights = [
     {
       icon: <FaCode className="text-indigo-400 text-xl" />,
-      title: "Full-Stack Web Engineering",
-      desc: "React, TypeScript, Angular, Laravel, Node.js & REST/GraphQL APIs.",
+      title: "Web Engineering",
+      desc: "React, TypeScript, Angular, C#, .NET, Laravel, Node.js & REST/GraphQL APIs.",
     },
     {
       icon: <FaDatabase className="text-emerald-400 text-xl" />,

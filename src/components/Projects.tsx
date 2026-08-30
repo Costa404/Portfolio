@@ -22,7 +22,7 @@ const Projects = () => {
           Flagship Projects
         </h2>
         <p className="text-zinc-400 text-sm max-w-xl mx-auto">
-          High-impact full-stack applications, 3D web graphics, offline-first architectures, and AI integrations.
+          High-impact applications, 3D web graphics, offline-first architectures, and AI integrations.
         </p>
       </motion.div>
 

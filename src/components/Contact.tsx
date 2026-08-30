@@ -30,7 +30,7 @@ const Contact = () => {
           Get In Touch
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-md mx-auto mb-8">
-          Interested in full-stack software development, 3D applications, or offline-first PWA projects? Feel free to reach out!
+          Interested in software engineering, 3D applications, or offline-first PWA projects? Feel free to reach out!
         </p>
 
         {/* Location Pill */}

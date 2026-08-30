@@ -17,18 +17,29 @@ const HomePage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-6 text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            Software Engineer Intern @ Decskill
-          </motion.div>
+          <div className="flex flex-wrap items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Software Engineer Intern @ Decskill
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-xs font-medium"
+            >
+              <span className="text-[10px]">📍</span> Porto, Portugal
+            </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,15 +52,15 @@ const HomePage = () => {
               as="h1"
               variant="cascade"
               trigger="load"
-              className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+              className="font-heading text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white"
             />
             <SplitText
-              text="Full-Stack Software Engineer"
+              text="Software Engineer"
               as="h2"
               variant="mask"
               trigger="load"
               delay={0.4}
-              className="font-heading text-2xl sm:text-3xl font-semibold gradient-text"
+              className="font-heading text-2xl sm:text-3xl font-medium gradient-text"
             />
           </motion.div>
 
@@ -139,19 +150,8 @@ const HomePage = () => {
                   Autodidata & Persistent Learner
                 </h3>
                 <p className="text-zinc-300 text-sm leading-relaxed">
-                  Driven by intense technical curiosity. My engineering journey began with exploring how complex software operates under the hood — mastering modern full-stack development, 3D web engines (Three.js/Rapier), AI pipelines (FastAPI/Groq API), NestJS microservices, and offline-first PWA architectures through hands-on practice.
+                  Driven by intense technical curiosity to explore how complex software operates under the hood.
                 </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="text-[10px] uppercase font-mono tracking-wider text-indigo-400">Philosophy</span>
-                  <p className="text-xs font-semibold text-white">Continuous Growth</p>
-                </div>
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="text-[10px] uppercase font-mono tracking-wider text-purple-400">Location</span>
-                  <p className="text-xs font-semibold text-white">Porto, Portugal 🇵🇹</p>
-                </div>
               </div>
             </div>
           </motion.div>

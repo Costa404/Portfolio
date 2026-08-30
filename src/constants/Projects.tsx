@@ -3,7 +3,6 @@ import myMovie from "../assets/myMovie.jpg";
 import codeMentorImg from "../assets/codeMentorImg.jpg";
 import awpImg from "../assets/awp.jpg";
 import urbanShot from "../assets/game.mp4";
-import myGymVid from "../assets/myGym.mp4";
 import myMovieTracker from "../assets/myMovieTracker.mp4";
 import codeMentor from "../assets/codeMentor.mp4";
 
@@ -59,10 +58,9 @@ export const PROJECTS: Project[] = [
     image: myGym,
     badge: "Personal Product (Fly.io)",
     appPreview: "https://gymtracker799.fly.dev/",
-    videoDemo: myGymVid,
     gitHubRepository: "https://github.com/Costa404/myGymApp",
     description:
-      "Full-stack PWA/SPA workout application with Offline-First IndexedDB (Dexie.js), bi-directional Push/Pull sync with Laravel 12 backend, WebAuthn biometric passkeys, Recharts analytics, and Fly.io Docker deployment.",
+      "PWA/SPA workout application with Offline-First IndexedDB (Dexie.js), bi-directional Push/Pull sync with Laravel 12 backend, WebAuthn biometric passkeys, Recharts analytics, and Fly.io Docker deployment.",
     technicalDetails: {
       title: "GymTracker — Offline-First & Biometric Authentication",
       description:
@@ -90,12 +88,12 @@ export const PROJECTS: Project[] = [
   {
     title: "myMovie Tracker",
     image: myMovie,
-    badge: "Full-Stack & Python NLP AI",
+    badge: "Python NLP & AI",
     appPreview: "https://mymovietracker.vercel.app/",
     videoDemo: myMovieTracker,
     gitHubRepository: "https://github.com/Costa404/myMovieTracker",
     description:
-      "Full-stack movie discovery and review platform featuring user activity feeds, watchlists, JWT auth, TF-IDF cosine similarity recommendations in Python, VADER sentiment analysis, and a Llama3 Groq AI assistant.",
+      "Movie discovery and review platform featuring user activity feeds, watchlists, JWT auth, TF-IDF cosine similarity recommendations in Python, VADER sentiment analysis, and a Llama3 Groq AI assistant.",
     technicalDetails: {
       title: "myMovie Tracker Architecture",
       description:

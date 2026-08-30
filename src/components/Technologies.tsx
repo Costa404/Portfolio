@@ -1,6 +1,6 @@
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandTypescript, TbSql } from "react-icons/tb";
-import { SiFirebase, SiTailwindcss, SiLaravel, SiDocker, SiPython, SiThreedotjs } from "react-icons/si";
+import { SiFirebase, SiTailwindcss, SiLaravel, SiDocker, SiPython, SiThreedotjs, SiCsharp, SiDotnet } from "react-icons/si";
 import { IoLogoCss3, IoLogoJavascript } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { FaAngular, FaNode } from "react-icons/fa";
@@ -25,6 +25,9 @@ const Technologies = () => {
     {
       name: "Backend, APIs & Architecture",
       items: [
+        { name: "C#", icon: <SiCsharp className="text-4xl text-purple-500" /> },
+        { name: ".NET", icon: <SiDotnet className="text-4xl text-violet-400" /> },
+        { name: "C", icon: <span className="text-4xl font-bold text-blue-300 font-mono">C</span> },
         { name: "Laravel 12", icon: <SiLaravel className="text-4xl text-rose-500" /> },
         { name: "Node.js", icon: <FaNode className="text-4xl text-emerald-500" /> },
         { name: "Python", icon: <SiPython className="text-4xl text-yellow-400" /> },

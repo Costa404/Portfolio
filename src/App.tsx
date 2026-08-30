@@ -18,6 +18,7 @@ import SmoothScroll from "./components/SmoothScroll";
 import ScrollProgress from "./components/ScrollProgress";
 import LoadingIntro from "./components/LoadingIntro";
 import { useSoundFX } from "./hooks/useSoundFX";
+import InteractiveTerminal from "./components/InteractiveTerminal";
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -69,6 +70,9 @@ const App = () => {
 
           {/* Interactive Mouse Spotlight Halo */}
           <MouseSpotlight />
+
+          {/* Hidden Terminal Easter Egg (Ctrl+K or backtick) */}
+          <InteractiveTerminal />
 
           <ModalProvider>
             <ScrollToTop />

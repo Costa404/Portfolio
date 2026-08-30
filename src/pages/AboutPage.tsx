@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Technologies from "../components/Technologies";
+import GitHubHeatmap from "../components/GitHubHeatmap";
 import { FaCode, FaDatabase, FaCube, FaBrain } from "react-icons/fa";
 import SplitText from "../components/SplitText";
 
@@ -7,8 +8,8 @@ const AboutPage = () => {
   const highlights = [
     {
       icon: <FaCode className="text-indigo-400 text-2xl" />,
-      title: "Full-Stack Web Engineering",
-      desc: "React, TypeScript, Angular, NestJS, Node.js & REST/GraphQL APIs.",
+      title: "Web Engineering",
+      desc: "React, TypeScript, Angular, C#, .NET, NestJS, Node.js & REST/GraphQL APIs.",
     },
     {
       icon: <FaDatabase className="text-emerald-400 text-2xl" />,
@@ -75,6 +76,9 @@ const AboutPage = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* GitHub Activity Heatmap */}
+      <GitHubHeatmap />
 
       {/* Categorized Tech Stack */}
       <motion.div

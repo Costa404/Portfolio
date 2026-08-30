@@ -1,6 +1,6 @@
-export const HERO_CONTENT = `Full-Stack Software Engineer dedicated to architecting scalable, resilient web applications and modern digital solutions. Skilled across frontend frameworks, backend microservices, real-time databases, and cloud infrastructure.`;
+export const HERO_CONTENT = `Software Engineer dedicated to architecting scalable, resilient web applications and modern digital solutions. Skilled across frontend frameworks, C#/.NET, backend microservices, real-time databases, and cloud infrastructure.`;
 
-export const ABOUT_TEXT = `Versatile Software Engineer with a passion for designing scalable full-stack web applications, clean APIs, and intuitive user interfaces using modern engineering best practices.`;
+export const ABOUT_TEXT = `Versatile Software Engineer with a passion for designing scalable web applications, clean APIs, and intuitive user interfaces using modern engineering best practices.`;
 
 export const EXPERIENCES = [
   {
@@ -14,7 +14,7 @@ export const EXPERIENCES = [
   },
   {
     year: "2024 - Present",
-    role: "Freelance Full Stack Developer",
+    role: "Freelance Software Developer",
     company: "Upwork & Fiverr",
     description:
       "Developed and deployed scalable web solutions for international clients using React, Node.js, Express, and TypeScript.",
@@ -33,10 +33,10 @@ export const EDUCATION = [
   },
   {
     year: "2024",
-    degree: "Full Stack Development Certification",
+    degree: "Web Development Certification",
     institution: "EDIT - Disruptive Digital Education | Porto, Portugal",
     description:
-      "Intensive full-stack development bootcamp focused on JavaScript, React, Node.js, databases, REST APIs, and agile team workflows.",
+      "Intensive web development bootcamp focused on JavaScript, React, Node.js, databases, REST APIs, and agile team workflows.",
     technologies: ["JavaScript", "React", "Node.js", "MongoDB", "Express"],
   },
   {

@@ -37,7 +37,7 @@ const ContactPage = () => {
           className="font-heading text-3xl sm:text-5xl font-bold text-white mt-2 mb-4"
         />
         <p className="text-zinc-400 text-sm sm:text-base max-w-md mx-auto mb-8">
-          Available for software engineering opportunities, full-stack projects, and technical collaborations.
+          Available for software engineering opportunities, technical projects, and collaborations.
         </p>
 
         {/* Location Pill */}
