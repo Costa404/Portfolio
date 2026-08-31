@@ -5,6 +5,7 @@ import awpImg from "../assets/awp.jpg";
 import urbanShot from "../assets/game.mp4";
 import myMovieTracker from "../assets/myMovieTracker.mp4";
 import codeMentor from "../assets/codeMentor.mp4";
+import tetrisImg from "../assets/tetris.jpg";
 
 export interface Project {
   title: string;
@@ -50,6 +51,30 @@ export const PROJECTS: Project[] = [
       "PostgreSQL",
       "Real-Time Sync",
       "Tailwind CSS",
+    ],
+  },
+  {
+    title: "Tetris (Unity 2D)",
+    image: tetrisImg,
+    badge: "Game Development",
+    description:
+      "A classic Tetris clone built from scratch in Unity, focusing on modular and scalable code. The core logic uses a grid system that separates logical data from visual representation. Includes dynamic piece spawning, array-based collision detection, line clearing, scoring, and Scene navigation.",
+    technicalDetails: {
+      title: "Tetris Clone — Unity 2D & C#",
+      description:
+        "Engineered a classic Tetris clone from the ground up, prioritizing clean architecture and a robust array-based grid system to decouple logic from rendering.",
+      backend:
+        "Core development focused on C# MonoBehaviours and Object-Oriented Programming. Implemented dynamic spawning of Tetromino Prefabs during the game loop.",
+      frontend:
+        "Features the New Input System for scalable, event-driven controls, URP (Universal Render Pipeline) for optimized graphics, and TextMeshPro for a crisp Main Menu and HUD.",
+    },
+    technologies: [
+      "Unity 2D",
+      "C#",
+      "New Input System",
+      "URP",
+      "TextMeshPro",
+      "Prefabs",
     ],
   },
 
