@@ -29,13 +29,13 @@ export const PROJECTS: Project[] = [
   {
     title: "+MMAIS — Pediatric Oncology Platform",
     image: codeMentorImg,
-    badge: "Professional Healthcare System @ Decskill",
+    badge: "Professional Healthcare System",
     description:
       "Gamified health platform engineered for Hospital ULS São João (Pediatric Oncology) to promote physical activity among hospitalized children. Architected modular NestJS backends, dynamic React interfaces, and real-time Supabase sync.",
     technicalDetails: {
       title: "+MMAIS — Pediatric Oncology Exercise Platform (ULS São João)",
       description:
-        "Developed during Software Engineer internship at Decskill. The platform gamifies physical exercise routines for hospitalized pediatric oncology patients, providing real-time progress monitoring for medical staff.",
+        "Developed as a professional project for Hospital ULS São João. The platform gamifies physical exercise routines for hospitalized pediatric oncology patients, providing real-time progress monitoring for medical staff.",
       backend:
         "Architected modular microservices using NestJS (TypeScript) and Supabase for real-time data streaming, database listeners, and role-based access security.",
       frontend:
@@ -75,6 +75,29 @@ export const PROJECTS: Project[] = [
       "URP",
       "TextMeshPro",
       "Prefabs",
+    ],
+  },
+  {
+    title: "Job Application Auto-Filler",
+    badge: "Automation & Scripting",
+    description:
+      "An automation tool for intelligently filling job application forms and uploading attachments (CV and cover letter). Connects to existing Chrome sessions via CDP to bypass anti-bot checks while maintaining a human-in-the-loop approach — auto-fills without submitting.",
+    technicalDetails: {
+      title: "Job Application Auto-Filler — Python & Playwright",
+      description:
+        "Built a smart automation pipeline that infers form field types on the fly using heuristic classification, DOM scraping, and Regex pattern matching across labels, placeholders, and ARIA attributes.",
+      backend:
+        "Python with Playwright for browser automation. Connects via Chrome DevTools Protocol (CDP) to attach to live browser sessions, preserving cookies and auth state to avoid bot detection.",
+      frontend:
+        "JavaScript-based DOM scraping engine injected into pages to extract and classify form fields dynamically using label proximity, placeholder text, and ARIA attribute analysis.",
+    },
+    technologies: [
+      "Python",
+      "Playwright",
+      "CDP",
+      "Regex",
+      "JavaScript",
+      "DOM Scraping",
     ],
   },
 

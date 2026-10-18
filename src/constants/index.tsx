@@ -4,9 +4,9 @@ export const ABOUT_TEXT = `Versatile Software Engineer with a passion for design
 
 export const EXPERIENCES = [
   {
-    year: "April 2026 - Present",
+    year: "April 2026 - October 2026",
     role: "Software Engineer Intern",
-    company: "Decskill | Porto, Portugal",
+    company: "Porto, Portugal",
     project: "+MMAIS - Pediatric Oncology Exercise Platform (ULS São João)",
     description:
       "Lead development for a gamified platform (ULS São João) promoting physical activity among hospitalized children. Architected modular backends with NestJS (TypeScript), dynamic React interfaces, and real-time synchronization with Supabase.",
@@ -24,12 +24,20 @@ export const EXPERIENCES = [
 
 export const EDUCATION = [
   {
-    year: "2025 - Present",
+    year: "2025 - October 2026",
     degree: "Specialist Technician in Information Systems Technologies and Programming",
     institution: "Cesae Digital | Porto, Portugal",
     description:
       "Advanced technical specialization in software architecture, systems development, database management, and programming.",
     technologies: [],
+  },
+  {
+    year: "September 2026",
+    degree: "Piscine — Admitted",
+    institution: "42 Porto",
+    description:
+      "Passed the intensive 26-day C programming trial, a highly selective admission process with no teachers, based on peer-to-peer learning and project-based evaluation. Elected not to pursue the Common Core.",
+    technologies: ["C", "Shell", "Algorithms", "Peer-to-Peer Learning"],
   },
   {
     year: "2024",
